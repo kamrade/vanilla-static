@@ -12,19 +12,15 @@ module.exports = merge(common, {
   devtool: 'inline-source-map', // any "source-map"-like devtool is possible
   devServer: {
 
+    contentBase: path.join(__dirname, 'src/templates'),
+    // hot: true,
+
+
     // suggested official config:
     // contentBase: './dist',
 
     // hot reloading html on save - fix / hack:
     // https://github.com/webpack/webpack-dev-server/issues/1271
 
-    contentBase: path.join(__dirname, 'src/templates'),
-
-    // watchContentBase: true,
-    // watchOptions: {
-    //   poll: true
-    // },
-
-    // hot: true,
   }
 });
