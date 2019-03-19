@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import {helloWorld} from './helloWorld';
-// import '../styles/style.scss';
+import '../styles/style.scss';
 
 if (module.hot) {
   module.hot.accept('./helloWorld', function() {

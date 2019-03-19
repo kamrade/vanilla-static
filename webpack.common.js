@@ -10,7 +10,7 @@ module.exports = {
 
   entry: {
     app: './src/scripts/index.js',
-    styles: './src/styles/style.scss',
+    // styles: './src/styles/style.scss',
     // another: './src/scripts/modules/another-module.js' // this is how you add extra modules
   },
 
@@ -49,7 +49,8 @@ module.exports = {
           // devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           // process.env.NODE_ENV !=='production'
 
-          MiniCssExtractPlugin.loader,
+          // MiniCssExtractPlugin.loader,
+          'style-loader',
           'css-loader',
           'postcss-loader',
           'sass-loader'
@@ -86,11 +87,11 @@ module.exports = {
     // Clean /dist folder before each build
     new CleanWebpackPlugin([ 'dist' ]),
 
-    new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output both options are optional
-      filename: devMode ? '[name].css' : '[name].[hash].css',
-      chunkFilename: devMode ? '[id].css' : '[id].[hash].css'
-    }),
+    // new MiniCssExtractPlugin({
+    //   // Options similar to the same options in webpackOptions.output both options are optional
+    //   filename: devMode ? '[name].css' : '[name].[hash].css',
+    //   chunkFilename: devMode ? '[id].css' : '[id].[hash].css'
+    // }),
 
     // it will replace our index.html file with a newly generated one
     new HtmlWebpackPlugin({

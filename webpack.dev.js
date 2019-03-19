@@ -3,9 +3,9 @@ const path = require('path');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 
-// common.plugins.push(
-//   new webpack.HotModuleReplacementPlugin()
-// );
+common.plugins.push(
+  new webpack.HotModuleReplacementPlugin()
+);
 
 module.exports = merge(common, {
   mode: 'development',
@@ -13,7 +13,7 @@ module.exports = merge(common, {
   devServer: {
 
     contentBase: path.join(__dirname, 'src/templates'),
-    // hot: true,
+    hot: true,
 
 
     // suggested official config:
