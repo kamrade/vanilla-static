@@ -1,0 +1,29 @@
+$white:    #fff;
+$gray-100: #F4F7FB;
+$gray-200: #E2E6EF;
+$gray-300: #C4CBD9;
+$gray-400: #ABB3C5;
+$gray-500: #8D96AA;
+$gray-600: #6B758A;
+$gray-700: #4C5567;
+$gray-800: #353C49;
+$gray-900: #1E222A;
+$black:    #000;
+
+$spacer: 1.25rem;
+$paragraph-margin-bottom: 0.625rem;
+$grid-gutter-width: 20px;
+
+$font-family-sans-serif: 'Cartograph Sans CF', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+$font-family-base: $font-family-sans-serif;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1440px,
+  xxxl: 1600px
+);
