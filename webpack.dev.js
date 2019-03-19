@@ -1,6 +1,11 @@
+const webpack = require('webpack');
 const path = require('path');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
+
+// common.plugins.push(
+//   new webpack.HotModuleReplacementPlugin()
+// );
 
 module.exports = merge(common, {
   mode: 'development',
@@ -9,14 +14,12 @@ module.exports = merge(common, {
 
     // suggested official config:
     // contentBase: './dist',
-    // hot: true
 
     // hot reloading html on save - fix / hack:
     // https://github.com/webpack/webpack-dev-server/issues/1271
 
-    // contentBase: [path.join(__dirname, 'src/templates'), path.join(__dirname, 'src')],
+    contentBase: path.join(__dirname, 'src/templates'),
 
-    // './src/templates/'
     // watchContentBase: true,
     // watchOptions: {
     //   poll: true

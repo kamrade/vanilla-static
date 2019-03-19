@@ -105,7 +105,7 @@ module.exports = {
 
     // Enabling Hot Module Replacement
     // new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+
   ],
 
   output: {
