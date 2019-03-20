@@ -1,4 +1,6 @@
-export const helloWorld = function helloWorld() {
-  console.log('::: hello');
-  return 'Hello World';
+import $ from 'jquery';
+
+export default function helloWorld() {
+  console.log('::: hello 1');
+  $('body').css('color', 'red');
 };

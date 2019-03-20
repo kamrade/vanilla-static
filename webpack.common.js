@@ -2,6 +2,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 const devMode = process.env.NODE_ENV !== 'production';
 const fs = require('fs');
@@ -74,19 +75,6 @@ module.exports = {
       },
 
       {
-        test: /\.ico$/,
-        include: path.resolve(__dirname, 'src/images/favicon'),
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-            outputPath: 'favicon/',
-            publicPath: 'favicon/'
-          }
-        }]
-      },
-
-      {
         test: /\.(png|svg|jpg|jpeg|gif)$/,
         exclude: /node_modules/,
         use: [{
@@ -118,6 +106,11 @@ module.exports = {
 
     // Clean /dist folder before each build
     new CleanWebpackPlugin([ 'dist' ]),
+
+    new CopyWebpackPlugin([{
+      from: './src/images/favicon',
+      to: './favicon'
+    }])
 
     // new MiniCssExtractPlugin({
     //   // Options similar to the same options in webpackOptions.output both options are optional
