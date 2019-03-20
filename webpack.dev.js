@@ -12,7 +12,14 @@ module.exports = merge(common, {
   devtool: 'inline-source-map', // any "source-map"-like devtool is possible
   devServer: {
 
-    contentBase: path.join(__dirname, 'src/templates'),
+    host: 'localhost',
+    port: 8080,
+    // proxy: {
+    //   path: /.*/,
+    //   target: 'http://localhost:3000'
+    // }
+
+    // contentBase: path.join(__dirname, 'src/templates'),
     hot: true,
 
 
