@@ -1,0 +1,12 @@
+<% var data = {
+  title: "Заголовок | Проект",
+  author: "Harrix"
+}; %>
+
+<%= _.template(require('./../includes/header.html'))(data) %>
+
+  <h1 class="first">First</h1>
+  <h2 class="second">Second</h2>
+  <a href="/test.html">Test</a>
+
+<%= _.template(require('./../includes/footer.html'))(data) %>

@@ -4,9 +4,25 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 const devMode = process.env.NODE_ENV !== 'production';
+const fs = require('fs');
+
+function generateHtmlPlugins(templateDir) {
+  const templateFiles = fs.readdirSync(path.resolve(__dirname, templateDir));
+  return templateFiles.map(item => {
+    const parts = item.split('.');
+    const name = parts[0];
+    const extension = parts[1];
+    return new HtmlWebpackPlugin({
+      filename: `${name}.html`,
+      template: path.resolve(__dirname, `${templateDir}/${name}.${extension}`),
+      // inject: false,
+    })
+  })
+}
+
+const htmlPlugins = generateHtmlPlugins('./src/templates/views')
 
 module.exports = {
-
 
   entry: {
     app: './src/scripts/index.js',
@@ -58,6 +74,19 @@ module.exports = {
       },
 
       {
+        test: /\.ico$/,
+        include: path.resolve(__dirname, 'src/images/favicon'),
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'favicon/',
+            publicPath: 'favicon/'
+          }
+        }]
+      },
+
+      {
         test: /\.(png|svg|jpg|jpeg|gif)$/,
         exclude: /node_modules/,
         use: [{
@@ -76,7 +105,10 @@ module.exports = {
         loader: 'url-loader?limit=1024&name=fonts/[name].[ext]'
       }, {
         test:/\.html$/,
-        loader: ['html-loader']
+        include: path.resolve(__dirname, 'src/templates/includes'),
+        loader: [
+          'raw-loader',
+        ]
       }
     ]
   },
@@ -94,20 +126,20 @@ module.exports = {
     // }),
 
     // it will replace our index.html file with a newly generated one
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: './src/templates/index.html'
-    }),
-
-    new HtmlWebpackPlugin({
-      filename: 'test.html',
-      template: './src/templates/test.html',
-    }),
+    // new HtmlWebpackPlugin({
+    //   filename: 'index.html',
+    //   template: './src/templates/views/index.html'
+    // }),
+    //
+    // new HtmlWebpackPlugin({
+    //   filename: 'test.html',
+    //   template: './src/templates/views/test.html',
+    // }),
 
     // Enabling Hot Module Replacement
     // new webpack.NamedModulesPlugin(),
 
-  ],
+  ].concat(htmlPlugins),
 
   output: {
     filename: devMode ? '[name].js' : '[name].[hash].js',
