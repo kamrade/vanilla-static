@@ -114,6 +114,11 @@ module.exports = {
     new CleanWebpackPlugin([ 'dist' ]),
 
     new CopyWebpackPlugin([{
+      from: './src/images/img',
+      to: './img'
+    }]),
+
+    new CopyWebpackPlugin([{
       from: './src/images/favicon',
       to: './favicon'
     }])
