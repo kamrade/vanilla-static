@@ -2,3 +2,13 @@
 @import './mixins';
 @import './bootstrap/bootstrap';
 @import './components/components';
+
+.bg-image--dot-pattern {
+  background-image: url("../images/patterns/dot_pattern_300.png");
+  width: 400px;
+  height: 100px;
+}
+
+.bg-gray-100 {
+  background-color: $gray-100;
+}

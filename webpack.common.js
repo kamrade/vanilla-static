@@ -57,6 +57,12 @@ module.exports = {
         }
       },
 
+      // {
+      //   test: /\.html$/,
+      //   exclude: /node_modules/,
+      //   loader: 'html-loader'
+      // },
+
       {
         test: /\.s?[ac]ss$/,
         use: [

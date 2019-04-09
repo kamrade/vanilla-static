@@ -20,7 +20,7 @@ module.exports = merge(common, {
     // }
 
     // contentBase: path.join(__dirname, 'src/templates'),
-    hot: true,
+    // hot: true,
 
 
     // suggested official config:
