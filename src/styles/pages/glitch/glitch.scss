@@ -1,0 +1,118 @@
+@import './glitch-vars';
+@import './animations';
+
+.content {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+
+.glitch-page {
+
+  .content__title {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 200;
+    font-size: 7vw;
+    margin: 80vh 0 0 0;
+    position: relative;
+    color: var(--color-title);
+    animation-name: glitch-anim-text;
+    animation-duration: var(--time-anim);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-delay: calc(var(--delay-anim) + var(--time-anim) * 0.2);
+  }
+
+  .glitch {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--glitch-width);
+    height: var(--glitch-height);
+    overflow: hidden;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .glitch__img {
+    position: absolute;
+    top: calc(-1 * var(--gap-vertical));
+    left: calc(-1 * var(--gap-horizontal));
+    width: calc(100% + var(--gap-horizontal) * 2);
+    height: calc(100% + var(--gap-vertical) * 2);
+    background: url(../images/img/cyberpunk.jpg) no-repeat 50% 0;
+    background-color: var(--blend-color-1);
+    background-size: cover;
+    transform: translate3d(0,0,0);
+    background-blend-mode: var(--blend-mode-1);
+  }
+
+  // BASE IMAGE
+
+  .glitch__img:nth-child(n+2) {
+    opacity: 0;
+  }
+
+  .glitch__img:nth-child(n+2) {
+    animation-duration: var(--time-anim);
+    animation-delay: var(--delay-anim);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  .glitch__img:nth-child(2) {
+    background-color: var(--blend-color-2);
+    background-blend-mode: var(--blend-mode-2);
+    animation-name: glitch-anim-1;
+  }
+
+  .glitch__img:nth-child(3) {
+    background-color: var(--blend-color-3);
+    background-blend-mode: var(--blend-mode-3);
+    animation-name: glitch-anim-2;
+  }
+
+  .glitch__img:nth-child(4) {
+    background-color: var(--blend-color-4);
+    background-blend-mode: var(--blend-mode-4);
+    animation-name: glitch-anim-3;
+  }
+
+  .glitch__img:nth-child(5) {
+    background-color: var(--blend-color-5);
+    background-blend-mode: var(--blend-mode-5);
+    animation-name: glitch-anim-flash;
+  }
+
+  // ANIMATIONS
+
+  .glitch:hover .glitch__img:nth-child(2) {
+    transform: translate3d(var(--gap-horizontal),0,0);
+    animation: glitch-anim-1-horizontal var(--time-anim) infinite linear alternate;
+  }
+
+  .glitch:hover > .glitch__img:nth-child(3) {
+    transform: translate3d(calc(-1 * var(--gap-horizontal)),0,0);
+    animation: glitch-anim-2-horizontal var(--time-anim) infinite linear alternate;
+  }
+
+  .glitch:hover > .glitch__img:nth-child(4) {
+    transform: translate3d(0, calc(-1 * var(--gap-vertical)), 0) scale3d(-1,-1,1);
+    animation: glitch-anim-3-horizontal var(--time-anim) infinite linear alternate;
+  }
+
+  /* Hover flash animation on last image */
+  .glitch:hover > .glitch__img:nth-child(5) {
+    animation: glitch-anim-flash 0.5s steps(1,end) infinite;
+  }
+
+
+
+}

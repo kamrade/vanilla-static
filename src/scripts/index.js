@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import helloWorld from './helloWorld';
+import glitch from './glitch';
 import '../styles/style.scss';
 
 // if (module.hot) {
@@ -11,6 +12,10 @@ import '../styles/style.scss';
 
 if (module.hot) {
   module.hot.accept();
+}
+
+if (window.location.href.includes('glitch.html')) {
+  glitch();
 }
 
 $('#click-me').on('click', helloWorld);
