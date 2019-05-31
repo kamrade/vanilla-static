@@ -1,14 +1,7 @@
-import $ from 'jquery';
-import helloWorld from './helloWorld';
+// import $ from 'jquery';
 import glitch from './glitch';
+import rolling from './rolling/rolling';
 import '../styles/style.scss';
-
-// if (module.hot) {
-//   module.hot.accept('./helloWorld', function() {
-//     console.log('Accepting the updated helloWorld module');
-//     helloWorld();
-//   });
-// }
 
 if (module.hot) {
   module.hot.accept();
@@ -18,7 +11,8 @@ if (window.location.href.includes('glitch.html')) {
   glitch();
 }
 
-$('#click-me').on('click', helloWorld);
+if (window.location.href.includes('rolling.html')) {
+  rolling.init();
+}
 
-helloWorld();
-console.log('::: start');
+console.log('::: start index.html');

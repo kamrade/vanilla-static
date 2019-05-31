@@ -1,0 +1,37 @@
+<% var data = {
+  title: "Заголовок | Проект",
+  author: "Harrix"
+}; %>
+
+<%= _.template(require('./../includes/header.html'))(data) %>
+
+  <div class="rolling-content">
+
+    <div id="console-output" class="console-output">
+      Empty
+    </div>
+
+    <div class="slides-header">
+      <a href="/index.html">Back</a>
+      <h1 class="first">Rolling</h1>
+    </div>
+
+    <div class="slides-container">
+
+      <!-- SLIDE 01 -->
+      <div class="slide slide01">
+        <div id="slide_01_animation"></div>
+      </div>
+
+      <div class="slide slide02">
+        <div id="slide_02_animation"></div>
+      </div>
+
+      <div class="slide slide03">SLIDE 03</div>
+      <div class="slide slide04">SLIDE 04</div>
+
+    </div>
+
+  </div>
+
+<%= _.template(require('./../includes/footer.html'))(data) %>

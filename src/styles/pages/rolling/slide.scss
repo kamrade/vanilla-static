@@ -1,0 +1,25 @@
+.slide {
+  height: 800px;
+  padding: $spacer;
+
+  &.slide01 {
+    background-color: rgba(140, 145, 150, 0.3);
+
+    .counter {
+      font-size: 12vw;
+      font-weight: 800;
+    }
+  }
+
+  &.slide02 {
+    background-color: rgba(230, 235, 240, 0.5);
+  }
+
+  &.slide03 {
+    background-color: rgba(230, 235, 240, 0.2);
+  }
+
+  &.slide04 {
+    background-color: rgba(230, 235, 240, 0.9);
+  }
+}
