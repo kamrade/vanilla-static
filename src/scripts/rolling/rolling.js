@@ -70,6 +70,9 @@ export default {
         index: slideData.id
       });
 
+      slide.animation.setSpeed(2);
+      console.log(slide.animation);
+
       this.slides.push(slide);
 
     });
@@ -101,8 +104,8 @@ export default {
         this.slides[i].reverse();
         this.progress[i] = 0;
       }
-
     });
+
   },
 
   // EVENT HANDLERS
