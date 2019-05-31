@@ -1,19 +1,34 @@
 import $ from 'jquery';
 
 import calculateSlideBreakpoints from './helpers/calculateSlideBreakpoints';
-import slide01 from './slides/slide01';
-import slide02 from './slides/slide02';
+import data from './data';
+import Slide from './slides/slide';
 
 export default {
+
+  // BASIC
+  version: '0.01',
 
   // DOM CACHE
   $window: null,
   $console: null,
+  $fixedSlidesContainer: null,
+  $slidesProgress: null,
 
-  version: '0.01',
+  // SLIDES
+  progress: [],
+  slides: [],
+  _currentSlide: null,
+  set currentSlide(value) {
+    console.log(value);
+    this._currentSlide = value;
+  },
+  get currentSlide() {
+    return this._currentSlide;
+  },
+  controlOffset: 0,
 
-  controlOffset: 400,
-
+  // SERVICES
   _windowOffsetY: 0,
   set windowOffsetY(value) {
     this._windowOffsetY = value;
@@ -34,73 +49,88 @@ export default {
     return this._slidesBreakpoins;
   },
 
-
-
-
-
-
   // FUNCTIONS
   // INITIAL
 
-  init: function() {
-    console.log(`Rolling version: ${this.version}`);
-    this.$window = $(window);
-    this.$console = $("#console-output");
+  init() {
+    this.$window                  = $(window);
+    this.$console                 = $("#console-output");
+    this.controlOffset            = this.$window.height() / 2;
+    this.$fixedSlidesContainer    = $('#fixed-slides-container');
+    this.$slidesProgress          = $('#slides-progress');
+
+    data.slides && data.slides.map((slideData, i) => {
+
+      this.$slidesProgress.append(`<div class="slide slide-${i}"></div>`);
+      this.$fixedSlidesContainer.append(`<div class="slide-fixed" id="${slideData.element}"></div>`);
+
+      let slide = new Slide({
+        el: document.getElementById(slideData.element),
+        animationPath: slideData.animationPath,
+        index: slideData.id
+      });
+
+      this.slides.push(slide);
+
+    });
+
+    this.slidesElements   = $('.slide');
+    this.slidesBreakpoins = calculateSlideBreakpoints(this.slidesElements);
+
+    this.setupHelpers();
     this.setupEvents();
     this.updateConsole();
-    this.slidesElements = $('.slide');
-    this.slidesBreakpoins = calculateSlideBreakpoints(this.slidesElements);
-    this.offset = this.$window.height() / 2;
-
-    // SLIDES
-    let el1 = document.getElementById('slide_01_animation');
-    const an1 = 'src/scripts/rolling/slides/slide01.json';
-    slide01.init(el1, an1);
-
-    let el2 = document.getElementById('slide_02_animation');
-    const an2 = 'src/scripts/rolling/slides/slide02.json';
-    slide02.init(el2, an2);
   },
 
   setupEvents: function() {
     this.$window.on('scroll', this.handlerWindowScroll.bind(this));
+    this.$window.on('keyup', this.handlerKeyup.bind(this));
   },
 
   // MAIN LOGIC
 
   checkBreakpoint() {
+
     this.slidesBreakpoins.map((el, i) => {
-
-
-
-      if (i === 0) {
-        if (this.windowOffsetY + this.controlOffset >= el.y && this.windowOffsetY + this.controlOffset <= el.y + el.h) {
-          slide01.play();
-        } else {
-          slide01.reverse();
-        }
+      if (this.windowOffsetY + this.controlOffset >= el.y && this.windowOffsetY + this.controlOffset <= el.y + el.h) {
+        this.currentSlide = i;
+        this.slides[i].play();
+        let offset = this.windowOffsetY + this.controlOffset - el.y;
+        this.progress[i] = Math.round(offset / el.h * 100);
+      } else {
+        this.slides[i].reverse();
+        this.progress[i] = 0;
       }
-
-      if (i === 1) {
-        if (this.windowOffsetY + this.controlOffset >= el.y && this.windowOffsetY + this.controlOffset <= el.y + el.h) {
-          slide02.play();
-        } else {
-          slide02.reverse();
-        }
-      }
-
-
 
     });
   },
 
   // EVENT HANDLERS
 
-  handlerWindowScroll: function() {
+  handlerWindowScroll() {
     this.windowOffsetY = this.$window.scrollTop();
   },
 
+  handlerKeyup: function(event) {
+
+    if (event.keyCode === 38) {
+
+    } else if (event.keyCode === 40) {
+      var body = $("html, body");
+      console.log(body);
+      body.stop().animate({scrollTop: 0}, 500, 'swing', function() {
+         console.log("Finished animating");
+      });
+    }
+
+  },
+
   // HELPERS
+
+  setupHelpers() {
+    let $toggler = $('.help-ticks .toggler');
+    $toggler.css('top', this.controlOffset + 'px');
+  },
 
   updateConsole() {
     this.$console.html(`
@@ -110,7 +140,6 @@ export default {
       <br/>
       window offset y: ${this.windowOffsetY}
       <br/>
-      demo: ${slide01.demo && slide01.demo.score}
     `);
   }
 

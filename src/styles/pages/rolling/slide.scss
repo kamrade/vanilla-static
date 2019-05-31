@@ -1,25 +1,58 @@
-.slide {
-  height: 800px;
-  padding: $spacer;
+.rolling-content {
 
-  &.slide01 {
-    background-color: rgba(140, 145, 150, 0.3);
+  .slide {
+    height: 100vh;
+    margin-bottom: 200px;
+    padding: $spacer;
+    border: 1px solid $gray-300;
 
-    .counter {
-      font-size: 12vw;
-      font-weight: 800;
+    &.slide01 {
+
+    }
+
+    &.slide02 {
+
+    }
+
+    &.slide03 {
+
+    }
+
+    &.slide04 {
+
     }
   }
 
-  &.slide02 {
-    background-color: rgba(230, 235, 240, 0.5);
+
+  .fixed-slides-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+
+    .slide-fixed {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+    }
   }
 
-  &.slide03 {
-    background-color: rgba(230, 235, 240, 0.2);
+  .interface-elements {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
   }
 
-  &.slide04 {
-    background-color: rgba(230, 235, 240, 0.9);
-  }
+
 }

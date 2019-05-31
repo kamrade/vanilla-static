@@ -1,0 +1,24 @@
+.help-ticks {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 100px;
+
+  .toggler {
+    position: fixed;
+    border-top: 1px solid red;
+    top: 50%;
+  }
+
+  .helper-start {
+    position: fixed;
+    border-top: 1px solid red;
+    top: 50%;
+  }
+  .helper-end {
+    position: fixed;
+    border-top: 1px solid red;
+    top: 50%;
+  }
+}
