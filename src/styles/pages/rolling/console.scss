@@ -1,0 +1,16 @@
+.rolling-content {
+  .console-output {
+    position: fixed;
+    right: $spacer;
+    bottom: $spacer;
+    width: 300px;
+    height: 200px;
+    overflow-Y: auto;
+    overflow-X: hidden;
+    background-color: rgba(0,0,0,0.75);
+    font-size: 10px;
+    line-height: 1.2;
+    color: white;
+    padding: $spacer;
+  }
+}

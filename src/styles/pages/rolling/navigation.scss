@@ -1,0 +1,116 @@
+$nav-width: 96px;
+
+.rolling-navigation {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: $nav-width;
+  height: 100%;
+  background-color: transparentize($gray-100, .7);
+  display: flex;
+  overflow: hidden;
+
+  &.active {
+    width: 100%;
+    padding-left: $nav-width;
+    background-color: transparentize($gray-900, .7);
+
+    .navigation-block {
+      &.block-left, &.block-right {
+        transform: translateY(0px);
+      }
+    }
+
+    .nav-block-overlay {
+      display: block;
+    }
+
+  }
+
+  .navigation-panel {
+    width: $nav-width;
+    height: 100%;
+    background-color: $white;
+    border-right: 1px solid $gray-200;
+    position: absolute;
+    z-index: 6;
+    left: 0;
+    top: 0;
+
+    .navigation-toggler {
+      cursor: pointer;
+      padding: 1rem;
+      margin: 1rem;
+      border-radius: $border-radius-lg;
+      @include transition($transition-base);
+
+      &:hover {
+        background-color: $gray-100;
+      }
+    }
+
+  }
+
+  .navigation-block {
+    position: relative;
+    height: 100%;
+    border-right: 1px solid $gray-200;
+    background-color: $white;
+    overflow: hidden;
+
+    display: flex;
+    width: 40%;
+
+
+    &.block-left {
+      transition: transform .75s ease-in-out;
+      transform: translateX(-110%);
+      position: relative;
+      z-index: 5;
+    }
+    &.block-right {
+      transition: transform .75s .25s ease-in-out;
+      transform: translateX(-210%);
+    }
+
+    .nav-block-content {
+      margin: auto;
+    }
+
+  }
+
+  .nav-block-overlay {
+    cursor: pointer;
+    display: none;
+    position: relative;
+    height: 100%;
+    width: 20%;
+  }
+
+
+  // NAV BLOCK LEFT CONTENT
+  .nav-menu {
+    list-style: none;
+    margin: auto;
+    padding: 0;
+
+    a {
+      color: $gray-800;
+      @include transition($transition-base);
+
+      &:hover {
+        color: $gray-900;
+      }
+    }
+    .caption {
+      font-size: 64px;
+      line-height: 1.2;
+      font-weight: 900;
+      letter-spacing: -2px;
+      display: block;
+    }
+  }
+
+  // ------------------------
+}

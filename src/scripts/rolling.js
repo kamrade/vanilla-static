@@ -1,32 +1,48 @@
-import $ from 'jquery';
+//
+// currentSlide - slide index from 0 to length--. If = -1, no active slide.
+//
 
-import calculateSlideBreakpoints from './helpers/calculateSlideBreakpoints';
-import data from './data';
-import Slide from './slides/slide';
+import $ from 'jquery';
+import calculateSlideBreakpoints from './rolling/helpers/calculateSlideBreakpoints';
+import Console from './rolling/helpers/Console';
+import data from './rolling/data';
+import Slide from './rolling/slides/slide';
 
 export default {
 
-  // BASIC
   version: '0.01',
 
-  // DOM CACHE
   $window: null,
   $console: null,
   $fixedSlidesContainer: null,
   $slidesProgress: null,
 
-  // SLIDES
+  $menuToggler: null,
+  $navigation: null,
+  $closeOverlay: null,
+
+  _currentProgress: -1,
+  set currentProgress(value) {
+    this._currentProgress = value;
+    this.updateConsole();
+  },
+  get currentProgress() {
+    return this._currentProgress;
+  },
   progress: [],
   slides: [],
-  _currentSlide: null,
+  _currentSlide: -1,
   set currentSlide(value) {
-    console.log(value);
     this._currentSlide = value;
+    this.updateConsole();
   },
   get currentSlide() {
     return this._currentSlide;
   },
+
   controlOffset: 0,
+  windowHeight: 0,
+  windowWidth: 0,
 
   // SERVICES
   _windowOffsetY: 0,
@@ -49,15 +65,21 @@ export default {
     return this._slidesBreakpoins;
   },
 
+  console: null,
+
   // FUNCTIONS
   // INITIAL
 
   init() {
     this.$window                  = $(window);
-    this.$console                 = $("#console-output");
+
     this.controlOffset            = this.$window.height() / 2;
     this.$fixedSlidesContainer    = $('#fixed-slides-container');
     this.$slidesProgress          = $('#slides-progress');
+
+    this.$menuToggler             = $('.navigation-toggler');
+    this.$navigation              = $('.rolling-navigation');
+    this.$closeOverlay            = $('.close-overlay');
 
     data.slides && data.slides.map((slideData, i) => {
 
@@ -71,7 +93,6 @@ export default {
       });
 
       slide.animation.setSpeed(2);
-      console.log(slide.animation);
 
       this.slides.push(slide);
 
@@ -79,6 +100,8 @@ export default {
 
     this.slidesElements   = $('.slide');
     this.slidesBreakpoins = calculateSlideBreakpoints(this.slidesElements);
+
+    this.console = new Console();
 
     this.setupHelpers();
     this.setupEvents();
@@ -88,27 +111,46 @@ export default {
   setupEvents: function() {
     this.$window.on('scroll', this.handlerWindowScroll.bind(this));
     this.$window.on('keyup', this.handlerKeyup.bind(this));
+    this.$menuToggler.on('click', this.handlerMenuToggle.bind(this));
+    this.$closeOverlay.on('click', this.handlerMenuClose.bind(this));
   },
 
-  // MAIN LOGIC
+  // MAGIC
 
   checkBreakpoint() {
 
+    let isAtLeastOneBreakpoint = false;
+
     this.slidesBreakpoins.map((el, i) => {
       if (this.windowOffsetY + this.controlOffset >= el.y && this.windowOffsetY + this.controlOffset <= el.y + el.h) {
+        isAtLeastOneBreakpoint = true;
         this.currentSlide = i;
         this.slides[i].play();
         let offset = this.windowOffsetY + this.controlOffset - el.y;
         this.progress[i] = Math.round(offset / el.h * 100);
+        this.currentProgress = Math.round(offset / el.h * 100);
       } else {
         this.slides[i].reverse();
         this.progress[i] = 0;
       }
     });
 
+    if (!isAtLeastOneBreakpoint) {
+      this.currentSlide = -1;
+      this.currentProgress = -1;
+    }
   },
 
   // EVENT HANDLERS
+
+  handlerMenuClose() {
+    this.$navigation
+      .removeClass('active');
+  },
+
+  handlerMenuToggle() {
+    this.$navigation.toggleClass('active');
+  },
 
   handlerWindowScroll() {
     this.windowOffsetY = this.$window.scrollTop();
@@ -136,14 +178,7 @@ export default {
   },
 
   updateConsole() {
-    this.$console.html(`
-      version: ${this.version}
-      <br/>
-      offset: ${this.controlOffset}
-      <br/>
-      window offset y: ${this.windowOffsetY}
-      <br/>
-    `);
+    this.console.update(this);
   }
 
 }

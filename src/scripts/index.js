@@ -1,6 +1,6 @@
 // import $ from 'jquery';
 import glitch from './glitch';
-import rolling from './rolling/rolling';
+import rolling from './rolling';
 import '../styles/style.scss';
 
 if (module.hot) {

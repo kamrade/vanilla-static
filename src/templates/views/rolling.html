@@ -7,33 +7,13 @@
 
   <div class="rolling-content">
 
-    <div id="console-output" class="console-output">
-      Empty
-    </div>
-
-    <div class="slides-header">
-
-    </div>
-
+    <div id="console-output" class="console-output">Empty</div>
+    <%= _.template(require('./../includes/rolling/rolling-header.html'))() %>
     <div class="slides-container" id="slides-progress"></div>
-
     <div class="fixed-slides-container" id="fixed-slides-container"></div>
-
-
-    <div class="help-ticks">
-      <div class="toggler">Toggler</div>
-    </div>
-
-    <div class="interface-elements">
-      <a href="/index.html">Back</a>
-
-      <div class="container">
-
-        <header class="ui-header"></header>
-
-      </div>
-
-    </div>
+    <div class="help-ticks"><div class="toggler">Toggler</div></div>
+    <%= _.template(require('./../includes/rolling/ui.html'))() %>
+    <%= _.template(require('./../includes/rolling/navigation.html'))() %>
 
   </div>
 
