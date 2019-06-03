@@ -13,7 +13,8 @@ export default class Slide {
 
     this.el            = options.el;
     this.animationPath = options.animationPath;
-    this.index         = options.index
+    this.index         = options.index;
+    this.animationData = options.animationData;
 
     this.isPlayed      = false;
     this.isReversed    = true;
@@ -23,7 +24,8 @@ export default class Slide {
       renderer: 'svg',
       loop: false,
       autoplay: false,
-      path: this.animationPath
+      // path: this.animationPath,
+      animationData: this.animationData
     });
 
     this.animation.stop();

@@ -89,6 +89,7 @@ export default {
       let slide = new Slide({
         el: document.getElementById(slideData.element),
         animationPath: slideData.animationPath,
+        animationData: slideData.animationData,
         index: slideData.id
       });
 

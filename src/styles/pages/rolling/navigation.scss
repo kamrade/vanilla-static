@@ -3,31 +3,38 @@ $nav-block-width: 480px;
 
 .rolling-navigation {
   position: fixed;
-  left: 0;
+  right: 0;
   top: 0;
   bottom: 0;
   width: $nav-width;
   height: 100%;
 
   &.active {
-    padding-left: $nav-width;
+    padding-right: $nav-width;
 
     .navigation-panel {
       background-color: $gray-100;
+      border-left: 1px solid $gray-200;
     }
 
     .nav-block-overlay {
       opacity: 1;
       z-index: 1;
+      display: block;
     }
 
-    .block-left, .block-right {
+    .block-left {
+      transform: translateX(-1 * $nav-block-width) !important;
+    }
+
+    .block-right {
       transform: translateX(0) !important;
     }
 
   }
 
   .nav-block-overlay {
+    display: none;
     cursor: pointer;
     position: fixed;
     z-index: -1;
@@ -43,8 +50,6 @@ $nav-block-width: 480px;
   .navigation-panel {
     width: $nav-width;
     height: 100%;
-    background-color: $white;
-    border-right: 1px solid $gray-200;
     position: absolute;
     z-index: 6;
     left: 0;
@@ -67,25 +72,25 @@ $nav-block-width: 480px;
   .navigation-block {
     cursor: default;
     position: fixed;
-    border-right: 1px solid $gray-200;
+    border-left: 1px solid $gray-200;
     background-color: $gray-100;
     overflow: hidden;
     height: 100%;
     width: $nav-block-width;
     top: 0;
-    left: 0;
+    right: 0;
     display: flex;
 
     &.block-left {
       transition: transform .25s ease-in-out;
-      transform: translateX(-1 * $nav-block-width);
+      transform: translateX($nav-block-width + $nav-width);
       position: relative;
       z-index: 5;
     }
     &.block-right {
-      left: $nav-block-width + $nav-width;
+      right: $nav-block-width + $nav-width;
       transition: transform .25s ease-in-out;
-      transform: translateX(-2 * $nav-block-width);
+      transform: translateX(2 * $nav-block-width + $nav-width);
       z-index: 5;
     }
 
@@ -171,23 +176,6 @@ $nav-block-width: 480px;
       &:hover {
         text-decoration: none;
         color: $gray-700;
-      }
-    }
-
-    .button-try-demo {
-      font-size: 32px;
-      height: 80px;
-      border-radius: 40px;
-      background-color: $green;
-      color: $white;
-      font-weight: 600;
-      padding: 10px 40px;
-      display: block;
-      margin-bottom: 48px;
-      @include transition($transition-base);
-
-      &:hover {
-        background-color: darken($green, 5%);
       }
     }
 

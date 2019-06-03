@@ -1,6 +1,6 @@
 <% var data = {
   title: "Заголовок | Проект",
-  author: "Harrix"
+  author: "Dennis McK"
 }; %>
 
 <%= _.template(require('./../includes/header.html'))(data) %>
@@ -10,7 +10,7 @@
     <div id="console-output" class="console-output">Empty</div>
     <%= _.template(require('./../includes/rolling/rolling-header.html'))() %>
     <div class="slides-container" id="slides-progress"></div>
-    <div class="fixed-slides-container" id="fixed-slides-container"></div>
+    <div class="fixed-slides-container container" id="fixed-slides-container"></div>
     <div class="help-ticks"><div class="toggler">Toggler</div></div>
     <%= _.template(require('./../includes/rolling/ui.html'))() %>
     <%= _.template(require('./../includes/rolling/navigation.html'))() %>

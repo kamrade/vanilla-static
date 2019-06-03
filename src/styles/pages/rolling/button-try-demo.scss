@@ -1,0 +1,16 @@
+.button-try-demo {
+  font-size: 32px;
+  height: 80px;
+  border-radius: 40px;
+  background-color: $green;
+  color: $white;
+  font-weight: 600;
+  padding: 10px 40px;
+  display: inline-block;
+  margin-bottom: 48px;
+  @include transition($transition-base);
+
+  &:hover {
+    background-color: darken($green, 5%);
+  }
+}
