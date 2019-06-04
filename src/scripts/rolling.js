@@ -8,6 +8,8 @@ import Console from './rolling/helpers/Console';
 import data from './rolling/data';
 import Slide from './rolling/slides/slide';
 
+import animationBg from './rolling/animations/website-background';
+
 export default {
 
   version: '0.01',
@@ -99,6 +101,13 @@ export default {
 
     });
 
+    let bg = new Slide({
+      el: document.getElementById('website-backgroud'),
+      animationData: animationBg
+    });
+    bg.animation.setSpeed(0.1);
+    bg.play();
+
     this.slidesElements   = $('.slide');
     this.slidesBreakpoins = calculateSlideBreakpoints(this.slidesElements);
 
@@ -124,21 +133,35 @@ export default {
 
     this.slidesBreakpoins.map((el, i) => {
       if (this.windowOffsetY + this.controlOffset >= el.y && this.windowOffsetY + this.controlOffset <= el.y + el.h) {
+
         isAtLeastOneBreakpoint = true;
         this.currentSlide = i;
         this.slides[i].play();
         let offset = this.windowOffsetY + this.controlOffset - el.y;
         this.progress[i] = Math.round(offset / el.h * 100);
         this.currentProgress = Math.round(offset / el.h * 100);
+
       } else {
+
         this.slides[i].reverse();
         this.progress[i] = 0;
+
       }
     });
 
     if (!isAtLeastOneBreakpoint) {
       this.currentSlide = -1;
       this.currentProgress = -1;
+    } else {
+      //
+      // Просто не очень красиво получается :)
+      //
+      //
+      // if (this.currentProgress < 50 ) {
+      //   this.$fixedSlidesContainer.find(`#slide_0${this.currentSlide+1}_animation`).css('transform', `translateY(${  Math.round((50 - this.currentProgress)/2)  }px)`);
+      // } else {
+      //   this.$fixedSlidesContainer.find(`#slide_0${this.currentSlide+1}_animation`).css('transform', `translateY(${  Math.round((-1 * (this.currentProgress - 50))/2)  }px)`);
+      // }
     }
   },
 

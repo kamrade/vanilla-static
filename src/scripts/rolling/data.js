@@ -3,7 +3,7 @@
 //
 
 import slide01 from './animations/glitch01';
-import slide02 from './animations/slide02';
+import slide02 from './animations/glitch02';
 
 export default {
   slides: [{
