@@ -65,6 +65,7 @@ module.exports = {
 
       {
         test: /\.s?[ac]ss$/,
+        exclude: /node_modules/,
         use: [
 
           // style-loader is better for one-page-applications
@@ -72,8 +73,8 @@ module.exports = {
           // devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           // process.env.NODE_ENV !=='production'
 
-          // MiniCssExtractPlugin.loader,
-          'style-loader',
+          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+          // 'style-loader',
           'css-loader',
           'postcss-loader',
           'sass-loader'
@@ -121,13 +122,13 @@ module.exports = {
     new CopyWebpackPlugin([{
       from: './src/images/favicon',
       to: './favicon'
-    }])
+    }]),
 
-    // new MiniCssExtractPlugin({
-    //   // Options similar to the same options in webpackOptions.output both options are optional
-    //   filename: devMode ? '[name].css' : '[name].[hash].css',
-    //   chunkFilename: devMode ? '[id].css' : '[id].[hash].css'
-    // }),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output both options are optional
+      filename: devMode ? '[name].css' : '[name].[hash].css',
+      chunkFilename: devMode ? '[id].css' : '[id].[hash].css'
+    }),
 
     // it will replace our index.html file with a newly generated one
     // new HtmlWebpackPlugin({

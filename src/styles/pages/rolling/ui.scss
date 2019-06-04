@@ -3,9 +3,25 @@
   height: 100vh;
 }
 
+.ui-header {
+  padding: 1.5rem 0;
+}
+
 .ui-footer {
   position: absolute;
   bottom: 40px;
   left: 0;
   width: 100%;
+}
+
+.logo-wrapper {
+  width: 120px;
+}
+
+.accent-text {
+  font-size: 24px;
+  color: $blue;
+  font-weight: 800;
+  letter-spacing: -1px;
+  cursor: pointer;
 }
