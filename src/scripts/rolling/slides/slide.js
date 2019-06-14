@@ -22,7 +22,7 @@ export default class Slide {
     this.animation = lottie.loadAnimation({
       container: this.el,
       renderer: 'svg',
-      loop: false,
+      loop: options.loop,
       autoplay: false,
       // path: this.animationPath,
       animationData: this.animationData

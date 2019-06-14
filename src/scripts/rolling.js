@@ -101,13 +101,16 @@ export default {
 
     });
 
+    // BACKGROUND ANIMATION
     let bg = new Slide({
       el: document.getElementById('website-backgroud'),
-      animationData: animationBg
+      animationData: animationBg,
+      loop: true
     });
-    bg.animation.setSpeed(0.1);
+    bg.animation.setSpeed(0.2);
     bg.play();
 
+    // SLIDES CONTROL
     this.slidesElements   = $('.slide');
     this.slidesBreakpoins = calculateSlideBreakpoints(this.slidesElements);
 
