@@ -4,6 +4,7 @@
 
 import slide01 from './animations/glitch01';
 import slide02 from './animations/glitch02';
+import slide03 from './animations/glitch03';
 
 export default {
   slides: [{
@@ -16,5 +17,9 @@ export default {
     element: 'slide_02_animation',
     animationData: slide02,
     // animationPath: 'src/scripts/rolling/animations/slide02.json',
+  }, {
+    id: 3,
+    element: 'slide_03_animation',
+    animationData: slide03,
   }]
 }
