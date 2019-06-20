@@ -48,6 +48,7 @@ $nav-block-width: 480px;
   }
 
   .navigation-panel {
+    border-left: 1px solid transparent;
     width: $nav-width;
     height: 100%;
     position: absolute;
