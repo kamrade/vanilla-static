@@ -4,8 +4,11 @@
 
 import $ from 'jquery';
 import calculateSlideBreakpoints from './rolling/helpers/calculateSlideBreakpoints';
-import Console from './rolling/helpers/Console';
-import Helpers from './rolling/helpers/Helpers';
+
+import Console from './rolling/base/Console';
+import Ticks from './rolling/base/Ticks';
+import Menu from './rolling/base/Menu';
+
 import data from './rolling/data';
 import Slide from './rolling/slides/slide';
 
@@ -19,13 +22,8 @@ export default {
   version: '0.01',
 
   $window: null,
-  $console: null,
   $fixedSlidesContainer: null,
   $slidesProgress: null,
-
-  $menuToggler: null,
-  $navigation: null,
-  $closeOverlay: null,
 
   _currentProgress: -1,
   set currentProgress(value) {
@@ -71,9 +69,6 @@ export default {
     return this._slidesBreakpoins;
   },
 
-  console: null,
-  helpers: null,
-
   // STATE END ----------------------------------------------
 
   // FUNCTIONS
@@ -85,10 +80,6 @@ export default {
     this.controlOffset            = this.$window.height() / 2;
     this.$fixedSlidesContainer    = $('#fixed-slides-container');
     this.$slidesProgress          = $('#slides-progress');
-
-    this.$menuToggler             = $('.navigation-toggler');
-    this.$navigation              = $('.rolling-navigation');
-    this.$closeOverlay            = $('.close-overlay');
 
     data.slides && data.slides.map((slideData, i) => {
 
@@ -122,7 +113,11 @@ export default {
     this.slidesBreakpoins = calculateSlideBreakpoints(this.slidesElements);
 
     this.console = new Console();
-    this.helpers = new Helpers();
+    this.console.hide();
+    this.ticks   = new Ticks();
+    this.ticks.hide();
+    this.menu    = new Menu();
+
     this.setupEvents();
     this.updateConsole();
   },
@@ -130,8 +125,6 @@ export default {
   setupEvents: function() {
     this.$window.on('scroll', this.handlerWindowScroll.bind(this));
     this.$window.on('keyup', this.handlerKeyup.bind(this));
-    this.$menuToggler.on('click', this.handlerMenuToggle.bind(this));
-    this.$closeOverlay.on('click', this.handlerMenuClose.bind(this));
   },
 
   // MAGIC
@@ -183,16 +176,6 @@ export default {
   },
 
   // EVENT HANDLERS
-
-  handlerMenuClose() {
-    this.$navigation
-      .removeClass('active');
-  },
-
-  handlerMenuToggle() {
-    this.$navigation.toggleClass('active');
-  },
-
   handlerWindowScroll() {
     this.windowOffsetY = this.$window.scrollTop();
   },
@@ -213,7 +196,9 @@ export default {
 
   // HELPERS
   updateConsole() {
-    this.console.update(this);
+    if (this.console) {
+      this.console.update(this);
+    }
   }
 
 }

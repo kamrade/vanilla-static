@@ -6,6 +6,14 @@ export default class Console {
     this.$console = $("#console-output");
   }
 
+  hide() {
+    this.$console.hide();
+  }
+
+  show() {
+    this.$console.show();
+  }
+
   update(output) {
 
     this.$console.html(`
