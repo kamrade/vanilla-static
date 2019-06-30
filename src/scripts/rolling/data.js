@@ -2,7 +2,7 @@
 // массив объектов с параметрами слайдов
 //
 
-import slide01 from './animations/glitch01';
+import slide01 from './animations/out/glitch_01';
 import slide02 from './animations/glitch02';
 import slide03 from './animations/glitch03';
 import slide04 from './animations/gtr_01';

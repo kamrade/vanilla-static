@@ -5,12 +5,16 @@
 import $ from 'jquery';
 import calculateSlideBreakpoints from './rolling/helpers/calculateSlideBreakpoints';
 import Console from './rolling/helpers/Console';
+import Helpers from './rolling/helpers/Helpers';
 import data from './rolling/data';
 import Slide from './rolling/slides/slide';
+
 
 import animationBg from './rolling/animations/website-background';
 
 export default {
+
+  // STATE ----------------------------------------------
 
   version: '0.01',
 
@@ -68,6 +72,9 @@ export default {
   },
 
   console: null,
+  helpers: null,
+
+  // STATE END ----------------------------------------------
 
   // FUNCTIONS
   // INITIAL
@@ -115,8 +122,7 @@ export default {
     this.slidesBreakpoins = calculateSlideBreakpoints(this.slidesElements);
 
     this.console = new Console();
-
-    this.setupHelpers();
+    this.helpers = new Helpers();
     this.setupEvents();
     this.updateConsole();
   },
@@ -206,12 +212,6 @@ export default {
   },
 
   // HELPERS
-
-  setupHelpers() {
-    let $toggler = $('.help-ticks .toggler');
-    $toggler.css('top', this.controlOffset + 'px');
-  },
-
   updateConsole() {
     this.console.update(this);
   }

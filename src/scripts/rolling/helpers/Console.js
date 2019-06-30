@@ -7,6 +7,7 @@ export default class Console {
   }
 
   update(output) {
+
     this.$console.html(`
       Version: ${output.version}
       <br/>
