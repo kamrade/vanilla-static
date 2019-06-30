@@ -135,10 +135,15 @@ export default {
     let isAtLeastOneBreakpoint = false;
 
     this.slidesBreakpoins.map((el, i) => {
-      if (this.windowOffsetY + this.controlOffset >= el.y && this.windowOffsetY + this.controlOffset <= el.y + el.h) {
+
+      const currentOffset = this.windowOffsetY + this.controlOffset;
+      let wasCurrentSlide = this.currentSlide;
+
+      if (currentOffset >= el.y && currentOffset <= el.y + el.h) {
 
         isAtLeastOneBreakpoint = true;
         this.currentSlide = i;
+        this.slides[i].animation.setSpeed(1);
         this.slides[i].play();
         let offset = this.windowOffsetY + this.controlOffset - el.y;
         this.progress[i] = Math.round(offset / el.h * 100);
@@ -146,16 +151,19 @@ export default {
 
       } else {
 
+        this.slides[i].animation.setSpeed(10);
         this.slides[i].reverse();
         this.progress[i] = 0;
 
       }
+
     });
 
     if (!isAtLeastOneBreakpoint) {
       this.currentSlide = -1;
       this.currentProgress = -1;
     } else {
+
       //
       // Просто не очень красиво получается :)
       //

@@ -5,6 +5,7 @@
 import slide01 from './animations/glitch01';
 import slide02 from './animations/glitch02';
 import slide03 from './animations/glitch03';
+import slide04 from './animations/gtr_01';
 
 export default {
   slides: [{
@@ -21,5 +22,9 @@ export default {
     id: 3,
     element: 'slide_03_animation',
     animationData: slide03,
+  }, {
+    id: 4,
+    element: 'slide_04_animation',
+    animationData: slide04,
   }]
 }
