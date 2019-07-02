@@ -1,16 +1,37 @@
 .button-try-demo {
   font-size: 16px;
   line-height: 1.5;
-  // height: 80px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
   border: none;
-  border-radius: 16px;
+  border-radius: 40px;
   background-color: $green;
   color: $white;
   font-weight: 400;
   padding: 20px 40px;
   display: inline-block;
-  margin-bottom: 48px;
   @include transition($transition-base);
+
+  @media screen and (max-width: 1200px) and (min-width: 992px) {
+    margin-right: 4rem;
+  }
+
+  @media screen and (max-width: 880px) and (min-width: 768px) {
+    margin-right: 4rem;
+  }
+
+  @media screen and (max-width: 720px) {
+    margin-right: 4rem;
+  }
+
+  @media screen and (max-width: 576px) {
+    position: relative;
+    top: 48px;
+    white-space: nowrap;
+    font-size: 12px;
+    padding: 4px 10px;
+    margin: 20px 15px;
+  }
 
   &:hover {
     background-color: darken($green, 5%);

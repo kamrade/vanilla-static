@@ -12,7 +12,6 @@ import Menu from './rolling/base/Menu';
 import data from './rolling/data';
 import Slide from './rolling/slides/slide';
 
-
 import animationBg from './rolling/animations/website-background';
 
 export default {
@@ -147,6 +146,9 @@ export default {
         let offset = this.windowOffsetY + this.controlOffset - el.y;
         this.progress[i] = Math.round(offset / el.h * 100);
         this.currentProgress = Math.round(offset / el.h * 100);
+
+        // MOVE SLIDE WHEN SCROLL BETWEEN BREAKPOINTS
+        $(this.slides[i].el).css('transform', `translateY(${-1*this.currentProgress/10}%)`)
 
       } else {
 

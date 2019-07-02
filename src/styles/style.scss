@@ -4,6 +4,10 @@
 @import './components/components';
 @import './pages/index';
 
+body, html {
+  background-color: $gray-100;
+}
+
 .bg-image--dot-pattern {
   background-image: url("../images/patterns/dot_pattern_300.png");
   width: 400px;

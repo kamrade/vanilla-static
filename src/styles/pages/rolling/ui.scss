@@ -4,7 +4,7 @@
 }
 
 .ui-header {
-  padding: 1.5rem 0;
+  padding: 1rem 0;
 }
 
 .ui-footer {
@@ -12,16 +12,40 @@
   bottom: 40px;
   left: 0;
   width: 100%;
+
+  .text-description-left {
+    text-align: left;
+    font-weight: bold;
+
+    @include media-breakpoint-down(sm) {
+      text-align: center;
+    }
+  }
+
+  .text-description-right {
+    text-align: right;
+
+    @include media-breakpoint-down(sm) {
+      text-align: center;
+    }
+  }
 }
 
 .logo-wrapper {
-  width: 120px;
+  width: 284px;
+  position: relative;
+
+  @media screen and (max-width: 800px) {
+    width: 128px; // 21875
+    height: 57px;
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .accent-text {
-  font-size: 24px;
-  color: $blue;
-  font-weight: 800;
-  letter-spacing: -1px;
   cursor: pointer;
 }
