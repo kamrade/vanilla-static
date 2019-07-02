@@ -9,9 +9,21 @@
 
 .ui-footer {
   position: absolute;
-  bottom: 40px;
+  z-index: $z-footer;
+  bottom: 0px;
   left: 0;
   width: 100%;
+
+  @include media-breakpoint-up(sm) {
+    bottom: 40px;
+  }
+
+  .ui-footer-text {
+    display: none;
+    @include media-breakpoint-up(sm) {
+      display: block;
+    }
+  }
 
   .text-description-left {
     text-align: left;

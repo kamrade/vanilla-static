@@ -1,39 +1,40 @@
+.try-demo-button-wrapper {
+  text-align: right;
+
+  @include media-breakpoint-down(sm) {
+    text-align: center;
+  }
+}
+
 .button-try-demo {
   font-size: 16px;
   line-height: 1.5;
   text-transform: uppercase;
   letter-spacing: 2px;
   border: none;
-  border-radius: 40px;
-  background-color: $green;
-  color: $white;
+  border-radius: 16px;
+  background-color: $green-200;
+  color: $gray-900;
   font-weight: 400;
-  padding: 20px 40px;
+  padding: 20px 80px;
   display: inline-block;
   @include transition($transition-base);
+  display: block;
+  width: calc(100% - 4rem);
+  margin: 0 2rem 2rem;
 
-  @media screen and (max-width: 1300px) and (min-width: 992px) {
-    margin-right: 4rem;
-  }
-
-  @media screen and (max-width: 880px) and (min-width: 768px) {
-    margin-right: 4rem;
-  }
-
-  @media screen and (max-width: 720px) {
-    margin-right: 4rem;
-  }
-
-  @media screen and (max-width: 576px) {
-    position: relative;
-    top: 48px;
-    white-space: nowrap;
-    font-size: 12px;
-    padding: 4px 10px;
-    margin: 20px 15px;
+  @include media-breakpoint-up(sm) {
+    display: inline-block;
+    width: auto;
+    margin: 0;
+    margin-bottom: 2rem;
   }
 
   &:hover {
-    background-color: darken($green, 5%);
+    background-color: darken($green-200, 5%);
+  }
+
+  &:active {
+    background-color: darken($green-200, 8%);
   }
 }

@@ -12,7 +12,7 @@ import Menu from './rolling/base/Menu';
 import data from './rolling/data';
 import Slide from './rolling/slides/slide';
 
-import animationBg from './rolling/animations/website-background';
+import animationBg from './rolling/animations/out/waves-background';
 
 export default {
 
@@ -82,7 +82,7 @@ export default {
 
     data.slides && data.slides.map((slideData, i) => {
 
-      this.$slidesProgress.append(`<div class="slide slide-${i}"></div>`);
+      // this.$slidesProgress.append(`<div class="slide slide-${i}"></div>`);
       this.$fixedSlidesContainer.append(`<div class="slide-fixed" id="${slideData.element}"></div>`);
 
       let slide = new Slide({
@@ -100,7 +100,7 @@ export default {
 
     // BACKGROUND ANIMATION
     let bg = new Slide({
-      el: document.getElementById('website-backgroud'),
+      el: document.getElementById('website-background'),
       animationData: animationBg,
       loop: true
     });

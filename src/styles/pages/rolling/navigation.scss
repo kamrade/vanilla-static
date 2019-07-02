@@ -3,6 +3,7 @@ $nav-block-width: 480px;
 
 .rolling-navigation {
   position: fixed;
+  z-index: $z-nav;
   right: 0;
   top: 0;
   bottom: 0;

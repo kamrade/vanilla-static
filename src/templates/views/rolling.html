@@ -7,10 +7,34 @@
 
   <div class="rolling-content">
 
-    <div class="website-backgroud" id="website-backgroud"></div>
+    <div class="website-background" id="website-background"></div>
     <div id="console-output" class="console-output">Empty</div>
-    <%= _.template(require('./../includes/rolling/rolling-header.html'))() %>
-    <div class="slides-container" id="slides-progress"></div>
+    <!-- <%= _.template(require('./../includes/rolling/rolling-header.html'))() %> -->
+    <div class="slides-container" id="slides-progress">
+      <div class="slide slide-01">
+        <div class="text-accent">10+</div>
+        <div class="text-descr">years</div>
+        <div class="text-descr">of experience</div>
+        <div class="text-descr">in fintech</div>
+      </div>
+      <div class="slide slide-02">
+        <div class="text-accent">1 day</div>
+        <div class="text-descr">Fast</div>
+        <div class="text-descr">onboarding</div>
+      </div>
+
+
+      <div class="slide slide-03">
+        <div class="text-descr">Spare</div>
+        <div class="text-descr">yourself</div>
+        <div class="text-descr">the usual</div>
+        <div class="text-descr">marketing</div>
+        <div class="text-accent">Blah blah blah</div>
+      </div>
+
+
+      <div class="slide">4</div>
+    </div>
     <div class="fixed-slides-container container" id="fixed-slides-container"></div>
     <div class="help-ticks"><div class="toggler">Toggler</div></div>
     <%= _.template(require('./../includes/rolling/ui.html'))() %>
