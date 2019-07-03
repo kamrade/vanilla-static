@@ -47,10 +47,10 @@
     &.slide-02 {
 
       .text-accent {
-        font-size: 30vw;
+        font-size: 28vw;
       }
       .text-descr {
-        margin-left: 5vw;
+        margin-left: 4.5vw;
       }
     }
 
@@ -63,7 +63,21 @@
     }
 
     &.slide-04 {
+      .text-accent {
+        font-size: 22vw;
+      }
+      .text-descr {
+        font-size: 4vw;
+      }
+    }
 
+    &.slide-05 {
+      .text-accent {
+        font-size: 22vw;
+      }
+      .text-descr {
+        font-size: 4vw;
+      }
     }
   }
 

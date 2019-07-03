@@ -16,7 +16,7 @@
   background-color: $green-200;
   color: $gray-900;
   font-weight: 400;
-  padding: 20px 80px;
+  padding: 20px 40px;
   display: inline-block;
   @include transition($transition-base);
   display: block;
@@ -28,6 +28,7 @@
     width: auto;
     margin: 0;
     margin-bottom: 2rem;
+    padding: 20px 80px;
   }
 
   &:hover {

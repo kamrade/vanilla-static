@@ -68,9 +68,9 @@ $nav-block-width: 480px;
       border-radius: $border-radius-lg;
       @include transition($transition-base);
 
-      &:hover {
-        background-color: $gray-200;
-      }
+      // &:hover {
+      //   background-color: $gray-200;
+      // }
     }
 
   }
@@ -80,12 +80,13 @@ $nav-block-width: 480px;
     position: fixed;
     border-left: 1px solid $gray-200;
     background-color: $gray-100;
-    overflow: hidden;
+    overflow-y: scroll;
     height: 100%;
     width: $nav-block-width;
     top: 0;
     right: 0;
     display: flex;
+
 
     &.block-left {
       transition: transform .25s ease-in-out;
