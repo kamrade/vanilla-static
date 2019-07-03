@@ -136,14 +136,13 @@ $nav-block-width: 480px;
       display: block;
     }
     .description {
-      @include work-sans();
+
     }
   }
 
   // ------------------------
 
   .additional-nav-block-content {
-    @include work-sans();
     margin: auto;
     width: $nav-block-width - 120;
 

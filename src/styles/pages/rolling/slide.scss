@@ -9,6 +9,8 @@
     padding: 2rem;
     padding-top: 30vh;
 
+    @include correct-100vh();
+
     @include media-breakpoint-up(sm) {
       opacity: 0;
     }

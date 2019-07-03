@@ -14,6 +14,9 @@ import Slide from './rolling/slides/slide';
 
 import animationBg from './rolling/animations/out/waves-background';
 
+import correctHeight from './rolling/base/correctHeight';
+correctHeight();
+
 export default {
 
   // STATE ----------------------------------------------
