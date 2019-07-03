@@ -11,7 +11,8 @@
     "debug": "NODE_ENV=debug npm test",
     "develop": "NODE_ENV=develop",
     "start": "webpack-dev-server --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
+    "build": "webpack --config webpack.prod.js",
+    "surge": "surge --domain beautiful-spiders.surge.sh"
   },
   "author": "Dennis Michailov",
   "license": "ISC",
