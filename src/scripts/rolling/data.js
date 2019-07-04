@@ -8,6 +8,8 @@ import slide03 from './animations/glitch03';
 // import slide04 from './animations/gtr_01';
 import slide04 from './animations/out/slide_04';
 import slide05 from './animations/out/slide_05';
+import slide06 from './animations/out/slide_06';
+import slide07 from './animations/out/slide_07';
 
 export default {
   slides: [{
@@ -32,5 +34,13 @@ export default {
     id: 5,
     element: 'slide_05_animation',
     animationData: slide05
+  }, {
+    id: 6,
+    element: 'slide_06_animation',
+    animationData: slide06
+  }, {
+    id: 7,
+    element: 'slide_07_animation',
+    animationData: slide07
   }]
 }

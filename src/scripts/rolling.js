@@ -13,6 +13,7 @@ import Slide from './rolling/slides/slide';
 
 import data from './rolling/data';
 import animationBg from './rolling/animations/out/waves-background';
+import waves from './rolling/animations/out/waves';
 
 export default {
 
@@ -115,6 +116,7 @@ export default {
     let bg = new Slide({
       el: document.getElementById('website-background'),
       animationData: animationBg,
+      // animationData: waves,
       loop: true
     });
     bg.animation.setSpeed(0.2);

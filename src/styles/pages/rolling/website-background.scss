@@ -1,4 +1,4 @@
-.website-background {
+.website-background, .website-animated-background {
   position: fixed;
   right: 0;
   top: 0;
@@ -13,4 +13,8 @@
     width: 100vw;
     height: 100vh;
   }
+}
+
+.website-animated-background {
+  opacity: .2;
 }
