@@ -4,28 +4,26 @@
 
 import $ from 'jquery';
 import calculateSlideBreakpoints from './rolling/helpers/calculateSlideBreakpoints';
+import correctHeight from './rolling/base/correctHeight';
 
 import Console from './rolling/base/Console';
 import Ticks from './rolling/base/Ticks';
 import Menu from './rolling/base/Menu';
-
-import data from './rolling/data';
 import Slide from './rolling/slides/slide';
 
+import data from './rolling/data';
 import animationBg from './rolling/animations/out/waves-background';
-
-import correctHeight from './rolling/base/correctHeight';
-correctHeight();
 
 export default {
 
   // STATE ----------------------------------------------
 
   version: '0.01',
+  progress: [],
+  slides: [],
+  controlOffset: 0,
+  slidesElements: null,
 
-  $window: null,
-  $fixedSlidesContainer: null,
-  $slidesProgress: null,
 
   _currentProgress: -1,
   set currentProgress(value) {
@@ -35,8 +33,7 @@ export default {
   get currentProgress() {
     return this._currentProgress;
   },
-  progress: [],
-  slides: [],
+
   _currentSlide: -1,
   set currentSlide(value) {
     this._currentSlide = value;
@@ -46,11 +43,24 @@ export default {
     return this._currentSlide;
   },
 
-  controlOffset: 0,
-  windowHeight: 0,
-  windowWidth: 0,
+  _windowHeight: 0,
+  get windowHeight() {
+    return this._windowHeight;
+  },
+  set windowHeight(value) {
+    this._windowHeight = value;
+    this.updateConsole();
+  },
 
-  // SERVICES
+  _windowWidth: 0,
+  get windowWidth() {
+    return this._windowWidth;
+  },
+  set windowWidth(value) {
+    this._windowWidth = value;
+    this.updateConsole();
+  },
+
   _windowOffsetY: 0,
   set windowOffsetY(value) {
     this._windowOffsetY = value;
@@ -60,8 +70,6 @@ export default {
   get windowOffsetY() {
     return this._windowOffsetY;
   },
-
-  slidesElements: null,
 
   _slidesBreakpoins: [],
   set slidesBreakpoins(value) {
@@ -77,8 +85,9 @@ export default {
   // INITIAL
 
   init() {
-    this.$window                  = $(window);
+    const self = this;
 
+    this.$window                  = $(window);
     this.controlOffset            = this.$window.height() / 2;
     this.$fixedSlidesContainer    = $('#fixed-slides-container');
     this.$slidesProgress          = $('#slides-progress');
@@ -101,6 +110,7 @@ export default {
 
     });
 
+
     // BACKGROUND ANIMATION
     let bg = new Slide({
       el: document.getElementById('website-background'),
@@ -120,6 +130,14 @@ export default {
     this.ticks.hide();
     this.menu    = new Menu();
 
+
+    this.handlerWindowResize(event);
+
+    setTimeout(() => {
+      self.checkBreakpoint();
+    }, 200);
+
+
     this.setupEvents();
     this.updateConsole();
   },
@@ -127,6 +145,7 @@ export default {
   setupEvents: function() {
     this.$window.on('scroll', this.handlerWindowScroll.bind(this));
     this.$window.on('keyup', this.handlerKeyup.bind(this));
+    this.$window.on('resize', this.handlerWindowResize.bind(this));
   },
 
   // MAGIC
@@ -168,15 +187,6 @@ export default {
       this.currentProgress = -1;
     } else {
 
-      //
-      // Просто не очень красиво получается :)
-      //
-      //
-      // if (this.currentProgress < 50 ) {
-      //   this.$fixedSlidesContainer.find(`#slide_0${this.currentSlide+1}_animation`).css('transform', `translateY(${  Math.round((50 - this.currentProgress)/2)  }px)`);
-      // } else {
-      //   this.$fixedSlidesContainer.find(`#slide_0${this.currentSlide+1}_animation`).css('transform', `translateY(${  Math.round((-1 * (this.currentProgress - 50))/2)  }px)`);
-      // }
     }
   },
 
@@ -185,7 +195,13 @@ export default {
     this.windowOffsetY = this.$window.scrollTop();
   },
 
-  handlerKeyup: function(event) {
+  handlerWindowResize(event) {
+    correctHeight();
+    this.windowHeight = this.$window.height();
+    this.windowWidth  = this.$window.width();
+  },
+
+  handlerKeyup(event) {
 
     if (event.keyCode === 38) {
 

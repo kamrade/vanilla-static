@@ -1,11 +1,16 @@
 ## Todolist
 
-- [  100% ] Lodash templates for html
-- [  0%   ] Extract css to separate file for build
-- [  0%   ] Reload page or HMR for html files
-- [  0%   ] Try jade templates.
+- [ x ] Lodash templates for html
+- [   ] Extract css to separate file for build
+- [   ] Reload page or HMR for html files
+- [   ] Try jade templates.
 
-- [  0%   ] Correct 100vh on mobile devices
-- [  0%   ] Nice responsive navigation
-- [       ] Page preloader
-- [       ] Когда страница загружается, ни один слайд не выводится. Нужно проинициализировать.
+- [ - ] Correct 100vh on mobile devices
+- [   ] Nice responsive navigation
+- [ - ] Page preloader
+- [ x ] Когда страница загружается, ни один слайд не выводится. Нужно проинициализировать.
+- [   ] Horizontal slides control
+- [   ] Реализация ф-ции setCurrentSlide.
+
+- [   ] Animate slides 6-11
+- [   ] Animate background

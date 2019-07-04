@@ -26,6 +26,10 @@ export default class Console {
       Current slide: ${output.currentSlide}
       <br/>
       Current offset: ${output.currentProgress}%
+      <br/>
+      Window width: ${output.windowWidth}
+      <br/>
+      Window height: ${output.windowHeight}
     `);
 
   }

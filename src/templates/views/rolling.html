@@ -49,11 +49,17 @@
 
     </div>
 
-    
+
     <div class="fixed-slides-container container" id="fixed-slides-container"></div>
     <div class="help-ticks"><div class="toggler">Toggler</div></div>
     <%= _.template(require('./../includes/rolling/ui.html'))() %>
     <%= _.template(require('./../includes/rolling/navigation.html'))() %>
+
+    <div class="ui-preloader" id="ui-preloader">
+      <div class="ui-preloader-text">
+        Loading…
+      </div>
+    </div>
 
   </div>
 
