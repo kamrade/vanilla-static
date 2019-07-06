@@ -12,7 +12,8 @@ import Menu from './rolling/base/Menu';
 import Slide from './rolling/slides/slide';
 
 import data from './rolling/data';
-import animationBg from './rolling/animations/out/waves-background';
+// import animationBg from './rolling/animations/out/animated-bg';
+import animationBg from './rolling/animations/out/waves-background-3';
 import waves from './rolling/animations/out/waves';
 
 export default {
@@ -119,7 +120,7 @@ export default {
       // animationData: waves,
       loop: true
     });
-    bg.animation.setSpeed(0.2);
+    bg.animation.setSpeed(0.1);
     bg.play();
 
     // SLIDES CONTROL
