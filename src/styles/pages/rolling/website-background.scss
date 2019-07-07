@@ -1,4 +1,4 @@
-.website-backgroud {
+.website-background, .website-animated-background {
   position: fixed;
   right: 0;
   top: 0;
@@ -6,5 +6,15 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: $gray-100;
+
+  svg {
+    min-width: 100vw;
+    min-height: 100vh;
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+.website-animated-background {
+  opacity: .2;
 }

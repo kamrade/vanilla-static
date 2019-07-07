@@ -2,7 +2,7 @@
   .console-output {
     position: fixed;
     right: $spacer;
-    bottom: $spacer;
+    top: 4*$spacer;
     width: 300px;
     height: 200px;
     overflow-Y: auto;

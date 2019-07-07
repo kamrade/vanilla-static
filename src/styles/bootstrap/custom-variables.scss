@@ -11,6 +11,8 @@ $gray-900: #1E222A;
 $black:    #000;
 
 $green: #00b300;
+$green-200: #5BE646;
+
 $blue: #2B86FF;
 
 $spacer: 1rem;
@@ -30,3 +32,10 @@ $grid-breakpoints: (
   xxl: 1440px,
   xxxl: 1600px
 );
+
+// ZINDEX
+$z-slides: 2;
+$z-header: 1;
+$z-footer: 9;
+$z-nav: 6;
+$z-preloader: 99;

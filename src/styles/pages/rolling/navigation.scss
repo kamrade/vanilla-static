@@ -3,6 +3,7 @@ $nav-block-width: 480px;
 
 .rolling-navigation {
   position: fixed;
+  z-index: $z-nav;
   right: 0;
   top: 0;
   bottom: 0;
@@ -11,6 +12,10 @@ $nav-block-width: 480px;
 
   &.active {
     padding-right: $nav-width;
+
+    .navigation-toggler {
+      background-color: $gray-200;
+    }
 
     .navigation-panel {
       background-color: $gray-100;
@@ -23,14 +28,10 @@ $nav-block-width: 480px;
       display: block;
     }
 
-    .block-left {
-      transform: translateX(-1 * $nav-block-width) !important;
+    .nav-block-content {
+      opacity: 1;
+      transform: translateX(-1 * $nav-width);
     }
-
-    .block-right {
-      transform: translateX(0) !important;
-    }
-
   }
 
   .nav-block-overlay {
@@ -55,6 +56,7 @@ $nav-block-width: 480px;
     z-index: 6;
     left: 0;
     top: 0;
+    border-left: 1px solid transparent;
 
     .navigation-toggler {
       cursor: pointer;
@@ -62,139 +64,30 @@ $nav-block-width: 480px;
       margin: 1rem;
       border-radius: $border-radius-lg;
       @include transition($transition-base);
-
-      &:hover {
-        background-color: $gray-100;
-      }
     }
 
   }
+}
 
-  .navigation-block {
-    cursor: default;
-    position: fixed;
-    border-left: 1px solid $gray-200;
-    background-color: $gray-100;
-    overflow: hidden;
-    height: 100%;
-    width: $nav-block-width;
-    top: 0;
-    right: 0;
-    display: flex;
+.nav-block-content {
+  background: $white;
+  border-radius: 16px 0 0 16px;
+  transform: translateX(100%);
+  opacity: 0;
+  position: fixed;
+  z-index: $z-nav;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  padding-left: 90px;
+  padding-top: 90px;
+  min-width: 530px;
+  transition: all .2s ease-in-out;
 
-    &.block-left {
-      transition: transform .25s ease-in-out;
-      transform: translateX($nav-block-width + $nav-width);
-      position: relative;
-      z-index: 5;
-    }
-    &.block-right {
-      right: $nav-block-width + $nav-width;
-      transition: transform .25s ease-in-out;
-      transform: translateX(2 * $nav-block-width + $nav-width);
-      z-index: 5;
-    }
-
-    .nav-block-content {
-      margin: auto;
-    }
-
-  }
-
-  // NAV BLOCK LEFT CONTENT
-  .nav-menu {
-    list-style: none;
-    margin: auto;
-    padding: 0;
-
-    .nav-link {
-      @include transition($transition-base);
-      &:hover {
-        background-color: $gray-100;
-      }
-    }
-
-    a {
-      color: $gray-800;
-      @include transition($transition-base);
-
-      &:hover {
-        color: $gray-900;
-      }
-    }
-    .caption {
-      font-size: 64px;
-      line-height: 1.2;
-      font-weight: 900;
-      letter-spacing: -2px;
-      display: block;
-    }
-    .description {
-      @include work-sans();
-    }
-  }
-
-  // ------------------------
-
-  .additional-nav-block-content {
-    @include work-sans();
-    margin: auto;
-    width: $nav-block-width - 120;
-
-    .additional-menu {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      margin-bottom: $spacer * 4;
-
-      .additional-nav-link {
-        margin-bottom: $spacer;
-
-        a, a:link, a:visited {
-          color: $gray-800;
-          text-decoration: none;
-          @include transition($transition-base);
-
-          &:hover {
-            text-decoration: none;
-            color: $gray-900;
-          }
-        }
-
-      }
-    }
-
-    .support-text {
-      color: $gray-500;
-      margin-bottom: 48px;
-    }
-
-    a, a:link, a:visited {
-      color: $gray-500;
-      text-decoration: none;
-      @include transition($transition-base);
-
-      &:hover {
-        text-decoration: none;
-        color: $gray-700;
-      }
-    }
-
-    .contact-sales {
-      font-size: 24px;
-      font-weight: 600;
-      margin-bottom: 48px;
-
-      a, a:link, a:visited {
-        color: $blue;
-        text-decoration: none;
-        @include transition($transition-base);
-
-        &:hover {
-          text-decoration: none;
-          color: $blue;
-        }
-      }
-    }
+  @include media-breakpoint-down(md) {
+    padding-left: 40px;
+    padding-top: 40px;
+    min-width: 300px;
+    max-width: 320px;
   }
 }

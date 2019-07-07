@@ -6,7 +6,16 @@ export default class Console {
     this.$console = $("#console-output");
   }
 
+  hide() {
+    this.$console.hide();
+  }
+
+  show() {
+    this.$console.show();
+  }
+
   update(output) {
+
     this.$console.html(`
       Version: ${output.version}
       <br/>
@@ -17,6 +26,10 @@ export default class Console {
       Current slide: ${output.currentSlide}
       <br/>
       Current offset: ${output.currentProgress}%
+      <br/>
+      Window width: ${output.windowWidth}
+      <br/>
+      Window height: ${output.windowHeight}
     `);
 
   }

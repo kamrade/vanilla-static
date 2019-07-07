@@ -1,8 +1,10 @@
 @import './fonts/cartograph-sans';
-@import './mixins';
 @import './bootstrap/bootstrap';
-@import './components/components';
 @import './pages/index';
+
+body, html {
+  background-color: $white;
+}
 
 .bg-image--dot-pattern {
   background-image: url("../images/patterns/dot_pattern_300.png");
