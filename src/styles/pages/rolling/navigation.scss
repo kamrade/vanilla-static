@@ -1,6 +1,6 @@
 $nav-width: 96px;
 $nav-block-width-desktop: 380px;
-$nav-block-width-mobile: 300px;
+$nav-block-width-mobile: 220px;
 
 .rolling-navigation {
   position: fixed;
@@ -14,13 +14,8 @@ $nav-block-width-mobile: 300px;
   &.active {
     padding-right: $nav-width;
 
-    .navigation-toggler {
-      background-color: $gray-200;
-    }
-
     .navigation-panel {
       background-color: $white;
-      // border-left: 1px solid $gray-200;
     }
 
     .nav-block-overlay {
@@ -50,14 +45,12 @@ $nav-block-width-mobile: 300px;
   }
 
   .navigation-panel {
-    // border-left: 1px solid transparent;
     width: $nav-width;
     height: 100%;
     position: absolute;
     z-index: 6;
     left: 0;
     top: 0;
-    // border-left: 1px solid transparent;
 
     .navigation-toggler {
       cursor: pointer;
@@ -81,9 +74,9 @@ $nav-block-width-mobile: 300px;
   top: 0;
   height: 100vh;
 
-  padding-left: 90px;
-  padding-top: 90px;
-  padding-right: 40px;
+  padding-left: 50px;
+  padding-top: 50px;
+  padding-right: 50px;
   overflow-Y: auto;
 
   min-width: $nav-block-width-desktop;
@@ -93,6 +86,14 @@ $nav-block-width-mobile: 300px;
   @include media-breakpoint-down(md) {
     padding-left: 40px;
     padding-top: 40px;
+    padding-right: 0;
+  }
+
+  @include media-breakpoint-down(sm) {
+    padding-left: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 0;
     min-width: $nav-block-width-mobile - 20px;
     max-width: $nav-block-width-mobile;
   }
@@ -111,20 +112,27 @@ $nav-block-width-mobile: 300px;
     &.primary {
       a, a:link, a:visited {
         &.nav-menu-link {
-          font-weight: 700;
           font-size: 30px;
           letter-spacing: 2px;
           text-transform: uppercase;
+          font-weight: 600;
+
+          @include media-breakpoint-down(sm) {
+            font-size: 18px;
+          }
         }
       }
     }
 
     &.primary-submenu {
+      margin-bottom: 1rem;
       a, a:link, a:visited {
         &.nav-submenu-link {
           color: $gray-800;
-          font-weight: 700;
           font-size: 20px;
+          @include media-breakpoint-down(sm) {
+            font-size: 14px;
+          }
         }
       }
     }
@@ -132,7 +140,11 @@ $nav-block-width-mobile: 300px;
     &.secondary {
       a, a:link, a:visited {
         &.nav-menu-link {
-
+          display: block;
+          margin-bottom: 0.5rem;
+          @include media-breakpoint-down(sm) {
+            font-size: 12px;
+          }
         }
       }
     }
