@@ -27,7 +27,6 @@
 
   .text-description-left {
     text-align: left;
-    font-weight: bold;
 
     @include media-breakpoint-down(sm) {
       text-align: center;

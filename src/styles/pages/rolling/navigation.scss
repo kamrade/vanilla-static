@@ -1,5 +1,6 @@
 $nav-width: 96px;
-$nav-block-width: 480px;
+$nav-block-width-desktop: 380px;
+$nav-block-width-mobile: 300px;
 
 .rolling-navigation {
   position: fixed;
@@ -18,8 +19,8 @@ $nav-block-width: 480px;
     }
 
     .navigation-panel {
-      background-color: $gray-100;
-      border-left: 1px solid $gray-200;
+      background-color: $white;
+      // border-left: 1px solid $gray-200;
     }
 
     .nav-block-overlay {
@@ -49,14 +50,14 @@ $nav-block-width: 480px;
   }
 
   .navigation-panel {
-    border-left: 1px solid transparent;
+    // border-left: 1px solid transparent;
     width: $nav-width;
     height: 100%;
     position: absolute;
     z-index: 6;
     left: 0;
     top: 0;
-    border-left: 1px solid transparent;
+    // border-left: 1px solid transparent;
 
     .navigation-toggler {
       cursor: pointer;
@@ -79,15 +80,68 @@ $nav-block-width: 480px;
   right: 0;
   top: 0;
   height: 100vh;
+
   padding-left: 90px;
   padding-top: 90px;
-  min-width: 530px;
+  padding-right: 40px;
+  overflow-Y: auto;
+
+  min-width: $nav-block-width-desktop;
+  max-width: $nav-block-width-desktop;
   transition: all .2s ease-in-out;
 
   @include media-breakpoint-down(md) {
     padding-left: 40px;
     padding-top: 40px;
-    min-width: 300px;
-    max-width: 320px;
+    min-width: $nav-block-width-mobile - 20px;
+    max-width: $nav-block-width-mobile;
   }
+
+  .nav-block-content-inner {
+
+  }
+
+
+  .nav-menu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-bottom: 3rem;
+
+    &.primary {
+      a, a:link, a:visited {
+        &.nav-menu-link {
+          font-weight: 700;
+          font-size: 30px;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+        }
+      }
+    }
+
+    &.primary-submenu {
+      a, a:link, a:visited {
+        &.nav-submenu-link {
+          color: $gray-800;
+          font-weight: 700;
+          font-size: 20px;
+        }
+      }
+    }
+
+    &.secondary {
+      a, a:link, a:visited {
+        &.nav-menu-link {
+
+        }
+      }
+    }
+
+    a, a:link, a:visited {
+      &.nav-menu-link {
+        color: $gray-800;
+      }
+    }
+  }
+
 }

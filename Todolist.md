@@ -13,6 +13,7 @@
 - [   ] Реализация ф-ции setCurrentSlide.
 - [   ] Feather Icons.
 - [   ] Different slides for horizontal and vertical screens
+- [   ] Когда показываем меню, дизэблить скроллинг.
 
 - [   ] Animate slides 6-11
 - [   ] Animate background
