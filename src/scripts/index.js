@@ -7,11 +7,11 @@ if (module.hot) {
   module.hot.accept();
 }
 
-if (window.location.href.includes('glitch.html')) {
+if (window.location.href.indexOf('glitch.html') !== -1) {
   glitch();
 }
 
-if (window.location.href.includes('rolling.html')) {
+if (window.location.href.indexOf('rolling.html') !== -1) {
   rolling.init();
 }
 

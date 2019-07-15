@@ -42,7 +42,7 @@
 
     var ready = function() {
       const preloader = document.getElementById("ui-preloader");
-      if (preloader) { preloader.remove() }
+      if (preloader) { preloader.parentNode.removeChild(preloader) }
     }
 
     document.addEventListener("DOMContentLoaded", ready);
