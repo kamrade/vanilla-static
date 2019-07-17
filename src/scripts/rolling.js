@@ -159,7 +159,7 @@ export default {
         this.currentProgress = Math.round(offset / el.h * 100);
 
         // MOVE SLIDE WHEN SCROLL BETWEEN BREAKPOINTS
-        $(this.slides[i].el).css('transform', `translateY(${-1*this.currentProgress/10}%)`)
+        $(this.slides[i].el).css('transform', `translateY(${-1*this.currentProgress/10}%)`);
 
       } else {
 

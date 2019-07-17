@@ -2,8 +2,8 @@
 // массив объектов с параметрами слайдов
 //
 
-import slide01 from './animations/integra/slide_01';
-import slide02 from './animations/integra/slide_02';
+import slide01 from './animations/out/slide_01';
+import slide02 from './animations/out/slide_02';
 import slide03 from './animations/out/slide_03';
 
 export default {
