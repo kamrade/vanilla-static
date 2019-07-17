@@ -120,7 +120,7 @@ export default {
     this.menu    = new Menu();
 
 
-    this.handlerWindowResize(event);
+    this.handlerWindowResize();
 
     setTimeout(() => {
       self.checkBreakpoint();
