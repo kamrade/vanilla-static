@@ -11,6 +11,11 @@ $nav-block-width-mobile: 220px;
   bottom: 0;
   width: $nav-width;
   height: 100%;
+  display: none;
+
+  @include media-breakpoint-down(md) {
+    display: block;
+  }
 
   &.active {
     padding-right: $nav-width;

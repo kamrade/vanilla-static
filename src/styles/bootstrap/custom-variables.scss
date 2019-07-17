@@ -33,6 +33,14 @@ $grid-breakpoints: (
   xxxl: 1600px
 );
 
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1240px
+);
+
 // ZINDEX
 $z-slides: 2;
 $z-header: 1;

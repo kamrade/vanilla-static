@@ -43,7 +43,7 @@
 }
 
 .logo-wrapper {
-  width: 284px;
+  width: 120px;
   position: relative;
 
   @media screen and (max-width: 800px) {
@@ -59,4 +59,22 @@
 
 .accent-text {
   cursor: pointer;
+}
+
+.header-navigation {
+  padding: 0.25*$spacer 0;
+  display: none;
+
+  @include media-breakpoint-up(lg) {
+    display: block;
+  }
+
+  a, a:link, a:visited {
+    color: $gray-900;
+  }
+
+  .header-nav-link {
+    display: inline-block;
+    padding: $spacer;
+  }
 }
