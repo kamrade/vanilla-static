@@ -114,14 +114,14 @@ export default {
 
 
     // BACKGROUND ANIMATION
-    let bg = new Slide({
-      el: document.getElementById('website-background'),
-      animationData: animationBg,
-      // animationData: waves,
-      loop: true
-    });
-    bg.animation.setSpeed(0.1);
-    bg.play();
+    // let bg = new Slide({
+    //   el: document.getElementById('website-background'),
+    //   animationData: animationBg,
+    //   // animationData: waves,
+    //   loop: true
+    // });
+    // bg.animation.setSpeed(0.1);
+    // bg.play();
 
     // SLIDES CONTROL
     this.slidesElements   = $('.slide');
