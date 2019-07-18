@@ -152,7 +152,7 @@ export default {
 
         isAtLeastOneBreakpoint = true;
         this.currentSlide = i;
-        this.slides[i].animation.setSpeed(1);
+        this.slides[i].animation.setSpeed(2);
         this.slides[i].play();
         let offset = this.windowOffsetY + this.controlOffset - el.y;
         this.progress[i] = Math.round(offset / el.h * 100);
