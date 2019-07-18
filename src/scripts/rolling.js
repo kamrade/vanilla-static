@@ -12,6 +12,7 @@ import Menu from './rolling/base/Menu';
 import Slide from './rolling/slides/slide';
 
 import data from './rolling/data';
+import animationBg from './rolling/animations/out/dynamic_bg_01';
 
 export default {
 
@@ -108,6 +109,14 @@ export default {
       this.slides.push(slide);
 
     });
+
+    let bg = new Slide({
+      el: document.getElementById('website-background'),
+      animationData: animationBg,
+      loop: true
+    });
+    bg.animation.setSpeed(0.1);
+    bg.play();
 
     // SLIDES CONTROL
     this.slidesElements   = $('.slide');
