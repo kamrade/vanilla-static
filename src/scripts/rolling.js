@@ -141,9 +141,9 @@ export default {
   },
 
   setupEvents: function() {
-    this.$window.on('scroll', this.handlerWindowScroll.bind(this));
-    this.$window.on('keyup', this.handlerKeyup.bind(this));
-    this.$window.on('resize', this.handlerWindowResize.bind(this));
+    this.$window.on( 'scroll', this.handlerWindowScroll.bind(this));
+    this.$window.on( 'keyup',  this.handlerKeyup.bind(this));
+    this.$window.on( 'resize', this.handlerWindowResize.bind(this));
   },
 
   // MAGIC
@@ -152,27 +152,41 @@ export default {
 
     let isAtLeastOneBreakpoint = false;
 
+    let slideBeforeCheck = this.currentSlide;
+
     this.slidesBreakpoins.map((el, i) => {
 
       const currentOffset = this.windowOffsetY + this.controlOffset;
-      let wasCurrentSlide = this.currentSlide;
 
       if (currentOffset >= el.y && currentOffset <= el.y + el.h) {
 
         isAtLeastOneBreakpoint = true;
         this.currentSlide = i;
-        this.slides[i].animation.setSpeed(2);
-        this.slides[i].play();
+
+        if (this.currentSlide < slideBeforeCheck && this.slides[slideBeforeCheck]) {
+          $(this.slides[slideBeforeCheck].el)
+            .css('transform', `translateY(100%)`);
+        }
+        if (this.currentSlide > slideBeforeCheck && this.slides[slideBeforeCheck]) {
+          $(this.slides[slideBeforeCheck].el)
+            .css('transform', `translateY(-100%)`);
+        }
+        if (this.currentSlide !== slideBeforeCheck) {
+          this.slides[i].animation.setSpeed(1);
+          this.slides[i].play();
+        }
+
         let offset = this.windowOffsetY + this.controlOffset - el.y;
         this.progress[i] = Math.round(offset / el.h * 100);
         this.currentProgress = Math.round(offset / el.h * 100);
 
         // MOVE SLIDE WHEN SCROLL BETWEEN BREAKPOINTS
+        // $(this.slides[i].el).css('transform', `translateY(${-1*this.currentProgress/10}%)`);
         $(this.slides[i].el).css('transform', `translateY(${-1*this.currentProgress/10}%)`);
 
       } else {
 
-        this.slides[i].animation.setSpeed(10);
+        this.slides[i].animation.setSpeed(8);
         this.slides[i].reverse();
         this.progress[i] = 0;
 

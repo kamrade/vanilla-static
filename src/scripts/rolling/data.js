@@ -5,6 +5,7 @@
 import slide01 from './animations/out/slide_01';
 import slide02 from './animations/out/slide_02';
 import slide03 from './animations/out/slide_03';
+import slide04 from './animations/out/slide_09';
 
 export default {
   slides: [{
@@ -19,5 +20,9 @@ export default {
     id: 3,
     element: 'slide_03_animation',
     animationData: slide03,
+  }, {
+    id: 4,
+    element: 'slide_04_animation',
+    animationData: slide04,
   }]
 }
