@@ -7,55 +7,41 @@
 
   <div class="rolling-content">
 
+
+
     <div class="video-footage fullscreen-bg" id="video-footage">
       <video class="fullscreen-bg__video" loop muted autoplay>
-        <!-- <source src="/src/assets/Typing.mp4" type="video/mp4" /> -->
         <source src="/src/assets/HiTech.mp4" type="video/mp4" />
       </video>
     </div>
+
     <div class="website-background" id="website-background"></div>
     <div class="website-animated-background" id="website-animated-background"></div>
 
-    <div id="console-output" class="console-output">Empty</div>
-
 
     <div class="slides-container" id="slides-progress">
-
       <div class="slide slide-01">
-        <div class="text-accent">10+</div>
-        <div class="text-descr">years</div>
-        <div class="text-descr">of experience</div>
-        <div class="text-descr">in fintech</div>
+        <%= _.template(require('./../includes/rolling/mobile-slide-01.html'))() %>
       </div>
-
       <div class="slide slide-02">
-        <div class="text-accent">1 day</div>
-        <div class="text-descr">Fast</div>
-        <div class="text-descr">onboarding</div>
+        <%= _.template(require('./../includes/rolling/mobile-slide-01.html'))() %>
       </div>
-
-
       <div class="slide slide-03">
-        <div class="text-descr">Spare</div>
-        <div class="text-descr">yourself</div>
-        <!-- <div class="text-descr">the usual</div>
-        <div class="text-descr">marketing</div>
-        <div class="text-accent">Blah blah blah</div> -->
+        <%= _.template(require('./../includes/rolling/mobile-slide-01.html'))() %>
       </div>
-
       <div class="slide slide-04">
-
+        <%= _.template(require('./../includes/rolling/mobile-slide-01.html'))() %>
       </div>
-
     </div>
-
-
     <div class="fixed-slides-container container" id="fixed-slides-container"></div>
-
-    <div class="help-ticks"><div class="toggler">Toggler</div></div>
-
     <%= _.template(require('./../includes/rolling/ui.html'))() %>
     <%= _.template(require('./../includes/rolling/navigation.html'))() %>
+
+
+
+
+    <div class="help-ticks"><div class="toggler">Toggler</div></div>
+    <div id="console-output" class="console-output">Empty</div>
 
     <div class="ui-preloader" id="ui-preloader">
       <div class="ui-preloader-text">

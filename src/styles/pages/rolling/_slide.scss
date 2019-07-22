@@ -7,90 +7,15 @@
     position: relative;
     z-index: $z-slides;
     padding: 2rem;
-    padding-top: 30vh;
-    opacity: 0;
+    display: flex;
 
     @include correct-100vh();
 
-    // @include media-breakpoint-up(sm) {
-    //   opacity: 0;
-    // }
-
-    .text-accent {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-      text-transform: uppercase;
-      font-weight: bold;
-      line-height: 1;
-      font-size: 45vw;
+    @include media-breakpoint-up(sm) {
+      opacity: 0;
+      padding-top: 30vh;
     }
 
-    .text-descr {
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      line-height: 1.2;
-      font-weight: 600;
-      color: $gray-700;
-      font-size: 7vw;
-    }
-
-
-    &.slide-01 {
-
-      .text-accent {
-        font-size: 45vw;
-      }
-
-      .text-descr {
-        font-size: 7vw;
-        margin-left: 6vw;
-      }
-
-    }
-
-    &.slide-02 {
-
-      .text-accent {
-        font-size: 28vw;
-      }
-      .text-descr {
-        margin-left: 4.5vw;
-      }
-    }
-
-    &.slide-03 {
-
-      .text-accent {
-        font-size: 25vw;
-        color: $gray-200;
-      }
-    }
-
-    &.slide-04 {
-      .text-accent {
-        font-size: 22vw;
-      }
-      .text-descr {
-        font-size: 4vw;
-      }
-    }
-
-    &.slide-05 {
-      .text-accent {
-        font-size: 22vw;
-      }
-      .text-descr {
-        font-size: 4vw;
-      }
-    }
-
-    &.slide-06 {
-      .text-accent {
-        font-size: 12vw;
-      }
-      .text-descr {
-        font-size: 4vw;
-      }
-    }
   }
 
 
@@ -102,11 +27,11 @@
     bottom: 0;
     width: 100%;
     height: 100%;
-    // display: none;
+    display: none;
 
-    // @include media-breakpoint-up(sm) {
-    //   display: block;
-    // }
+    @include media-breakpoint-up(sm) {
+      display: block;
+    }
 
     .slide-fixed {
       position: absolute;
@@ -132,4 +57,14 @@
   }
 
 
+}
+
+
+.mobile-slide-wrapper {
+  margin: auto;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
 }
