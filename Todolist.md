@@ -17,3 +17,5 @@
 
 - [   ] Animate slides 6-11
 - [   ] Animate background
+
+- [   ] Correct handle device rotation
