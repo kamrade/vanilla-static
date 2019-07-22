@@ -1,0 +1,145 @@
+$criteriaFontBaseUrl: "../fonts/criteria/" !default;
+
+@font-face {
+    font-family: 'Criteria CF';
+    src: url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-BoldOblique.woff2') format('woff2'),
+        url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-BoldOblique.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Criteria CF';
+    src: url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-Oblique.woff2') format('woff2'),
+        url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-Oblique.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Criteria CF';
+    src: url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-ExtraLight.woff2') format('woff2'),
+        url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-ExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Criteria CF';
+    src: url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-DemiBoldOblique.woff2') format('woff2'),
+        url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-DemiBoldOblique.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Criteria CF';
+    src: url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-ExtraBold.woff2') format('woff2'),
+        url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-ExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Criteria CF';
+    src: url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-ExtraLightOblique.woff2') format('woff2'),
+        url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-ExtraLightOblique.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Criteria CF';
+    src: url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-Regular.woff2') format('woff2'),
+        url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Criteria CF Super';
+    src: url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-Super.woff2') format('woff2'),
+        url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-Super.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Criteria CF';
+    src: url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-Thin.woff2') format('woff2'),
+        url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Criteria CF Super';
+    src: url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-SuperOblique.woff2') format('woff2'),
+        url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-SuperOblique.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Criteria CF';
+    src: url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-MediumOblique.woff2') format('woff2'),
+        url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-MediumOblique.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Criteria CF';
+    src: url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-LightOblique.woff2') format('woff2'),
+        url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-LightOblique.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Criteria CF';
+    src: url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-Bold.woff2') format('woff2'),
+        url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Criteria CF';
+    src: url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-Medium.woff2') format('woff2'),
+        url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Criteria CF';
+    src: url('#{$criteriaFontBaseUrl}hinted-CriteriaCFExtraBold-Oblique.woff2') format('woff2'),
+        url('#{$criteriaFontBaseUrl}hinted-CriteriaCFExtraBold-Oblique.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Criteria CF';
+    src: url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-DemiBold.woff2') format('woff2'),
+        url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-DemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Criteria CF';
+    src: url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-ThinOblique.woff2') format('woff2'),
+        url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-ThinOblique.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Criteria CF';
+    src: url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-Light.woff2') format('woff2'),
+        url('#{$criteriaFontBaseUrl}hinted-CriteriaCF-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}

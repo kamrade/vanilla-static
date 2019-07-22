@@ -23,6 +23,8 @@ export default {
   slides: [],
   controlOffset: 0,
   slidesElements: null,
+  ratio: 2,
+  ratioV: false,
 
 
   _currentProgress: -1,
@@ -96,23 +98,7 @@ export default {
     this.$fixedSlidesContainer    = $('#fixed-slides-container');
     this.$slidesProgress          = $('#slides-progress');
 
-    data.slides && data.slides.map((slideData, i) => {
-
-      // this.$slidesProgress.append(`<div class="slide slide-${i}"></div>`);
-      this.$fixedSlidesContainer.append(`<div class="slide-fixed" id="${slideData.element}"></div>`);
-
-      let slide = new Slide({
-        el: document.getElementById(slideData.element),
-        animationPath: slideData.animationPath,
-        animationData: slideData.animationData,
-        index: slideData.id
-      });
-
-      slide.animation.setSpeed(2);
-
-      this.slides.push(slide);
-
-    });
+    this.setupSlides();
 
     let bg = new Slide({
       el: document.getElementById('website-background'),
@@ -132,13 +118,14 @@ export default {
     this.ticks.hide();
     this.menu    = new Menu();
 
-
     this.handlerWindowResize();
+
+    // Initial call
+    this.setupWindowRatio();
 
     setTimeout(() => {
       self.checkBreakpoint();
     }, 200);
-
 
     this.setupEvents();
     this.updateConsole();
@@ -148,6 +135,31 @@ export default {
     this.$window.on( 'scroll', this.handlerWindowScroll.bind(this));
     this.$window.on( 'keyup',  this.handlerKeyup.bind(this));
     this.$window.on( 'resize', this.handlerWindowResize.bind(this));
+  },
+
+  setupSlides() {
+
+    this.$fixedSlidesContainer.empty();
+    this.slides = [];
+
+    data.slides && data.slides.map((slideData, i) => {
+
+      // this.$slidesProgress.append(`<div class="slide slide-${i}"></div>`);
+      this.$fixedSlidesContainer.append(`<div class="slide-fixed" id="${slideData.element}"></div>`);
+
+
+      let slide = new Slide({
+        el: document.getElementById(slideData.element),
+        animationPath: slideData.animationPath,
+        animationData: this.ratioV ? slideData.animationDataV : slideData.animationData,
+        index: slideData.id
+      });
+
+      slide.animation.setSpeed(2);
+
+      this.slides.push(slide);
+
+    });
   },
 
   // MAGIC
@@ -206,17 +218,45 @@ export default {
     }
   },
 
+  setupWindowRatio() {
+    this.ratio  = this.windowWidth / this.windowHeight;
+    this.ratioV = (this.windowWidth / this.windowHeight) < 1;
+  },
+
   // EVENT HANDLERS
   handlerWindowScroll() {
     this.windowOffsetY = this.$window.scrollTop();
   },
 
   handlerWindowResize(event) {
-    correctHeight();
 
+    let previousRatio = this.ratioV;
+
+    correctHeight();
     // All other params calculated in the setter
     this.windowHeight = this.$window.height();
     this.windowWidth  = this.$window.width();
+
+    this.setupWindowRatio();
+
+    let newRatio = this.ratioV;
+
+    if (previousRatio !== newRatio) {
+
+      let previousCurrentSlide = this.currentSlide;
+
+      this.setupSlides();
+      this.checkBreakpoint();
+
+      // Если текущий слай не изменился, система не будет его автоматически проигрывать
+      // Поэтому форсим проигрывание текущего слайда
+      if (previousCurrentSlide === this.currentSlide) {
+        this.slides[this.currentSlide].animation.setSpeed(1);
+        this.slides[this.currentSlide].play();
+      }
+
+    }
+
   },
 
   handlerKeyup(event) {

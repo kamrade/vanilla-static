@@ -19,27 +19,33 @@
   }
 
   .ui-footer-text {
-    display: none;
-    @include media-breakpoint-up(sm) {
-      display: block;
+    .text-description-left, .text-description-right, .text-description-center {
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 900;
     }
-  }
 
-  .text-description-left {
-    text-align: left;
-
-    @include media-breakpoint-down(sm) {
+    .text-description-center {
       text-align: center;
     }
-  }
 
-  .text-description-right {
-    text-align: right;
+    .text-description-left {
+      text-align: left;
 
-    @include media-breakpoint-down(sm) {
-      text-align: center;
+      @include media-breakpoint-down(sm) {
+        text-align: center;
+      }
+    }
+
+    .text-description-right {
+      text-align: right;
+
+      @include media-breakpoint-down(sm) {
+        text-align: center;
+      }
     }
   }
+
 }
 
 .logo-wrapper {
@@ -62,6 +68,9 @@
 }
 
 .header-navigation {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 10px;
   padding: 0.25*$spacer 0;
   display: none;
 

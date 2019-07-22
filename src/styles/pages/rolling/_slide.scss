@@ -8,12 +8,13 @@
     z-index: $z-slides;
     padding: 2rem;
     padding-top: 30vh;
+    opacity: 0;
 
     @include correct-100vh();
 
-    @include media-breakpoint-up(sm) {
-      opacity: 0;
-    }
+    // @include media-breakpoint-up(sm) {
+    //   opacity: 0;
+    // }
 
     .text-accent {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -101,11 +102,11 @@
     bottom: 0;
     width: 100%;
     height: 100%;
-    display: none;
+    // display: none;
 
-    @include media-breakpoint-up(sm) {
-      display: block;
-    }
+    // @include media-breakpoint-up(sm) {
+    //   display: block;
+    // }
 
     .slide-fixed {
       position: absolute;
