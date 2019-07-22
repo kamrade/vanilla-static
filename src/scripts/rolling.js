@@ -50,6 +50,8 @@ export default {
   set windowHeight(value) {
     this._windowHeight = value;
     this.updateConsole();
+    this.slidesBreakpoins = calculateSlideBreakpoints(this.slidesElements);
+    this.checkBreakpoint();
   },
 
   _windowWidth: 0,
@@ -59,6 +61,8 @@ export default {
   set windowWidth(value) {
     this._windowWidth = value;
     this.updateConsole();
+    this.slidesBreakpoins = calculateSlideBreakpoints(this.slidesElements);
+    this.checkBreakpoint();
   },
 
   _windowOffsetY: 0,
@@ -209,6 +213,8 @@ export default {
 
   handlerWindowResize(event) {
     correctHeight();
+
+    // All other params calculated in the setter
     this.windowHeight = this.$window.height();
     this.windowWidth  = this.$window.width();
   },
