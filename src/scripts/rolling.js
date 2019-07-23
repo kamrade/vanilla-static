@@ -113,7 +113,7 @@ export default {
     this.slidesBreakpoins = calculateSlideBreakpoints(this.slidesElements);
 
     this.console = new Console();
-    this.console.hide();
+    // this.console.hide();
     this.ticks   = new Ticks();
     this.ticks.hide();
     this.menu    = new Menu();
@@ -198,6 +198,8 @@ export default {
 
         // MOVE SLIDE WHEN SCROLL BETWEEN BREAKPOINTS
         // $(this.slides[i].el).css('transform', `translateY(${-1*this.currentProgress/10}%)`);
+
+        // Дергается на ipad
         $(this.slides[i].el).css('transform', `translateY(${-1*this.currentProgress/10}%)`);
 
       } else {

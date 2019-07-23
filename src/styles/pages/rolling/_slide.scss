@@ -11,13 +11,12 @@
 
     @include correct-100vh();
 
-    @include media-breakpoint-up(sm) {
+    @include media-breakpoint-up(lg) {
       opacity: 0;
       padding-top: 30vh;
     }
 
   }
-
 
   .fixed-slides-container {
     position: fixed;
@@ -28,8 +27,9 @@
     width: 100%;
     height: 100%;
     display: none;
+    @include correct-100vh();
 
-    @include media-breakpoint-up(sm) {
+    @include media-breakpoint-up(lg) {
       display: block;
     }
 
@@ -41,7 +41,8 @@
       bottom: 0;
       width: 100%;
       height: 100%;
-      transition: transform .1s ease-in-out;
+      @include correct-100vh();
+      // transition: transform .25s ease-in-out;
     }
   }
 
@@ -62,6 +63,9 @@
 
 .mobile-slide-wrapper {
   margin: auto;
+  position: relative;
+  width: 100%;
+  height: 100%;
 
   svg {
     width: 100%;
