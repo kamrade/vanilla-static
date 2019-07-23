@@ -1,0 +1,73 @@
+$fixtureFontBaseUrl: "../fonts/fixture/" !default;
+
+@font-face {
+    font-family: 'Fixture Expanded';
+    src: url('#{$fixtureFontBaseUrl}hinted-Fixture-ExpandedLight.woff2') format('woff2'),
+        url('#{$fixtureFontBaseUrl}hinted-Fixture-ExpandedLight.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fixture Expanded';
+    src: url('#{$fixtureFontBaseUrl}hinted-Fixture-ExpandedBlack.woff2') format('woff2'),
+        url('#{$fixtureFontBaseUrl}hinted-Fixture-ExpandedBlack.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fixture Expanded';
+    src: url('#{$fixtureFontBaseUrl}hinted-Fixture-ExpandedExtraLight.woff2') format('woff2'),
+        url('#{$fixtureFontBaseUrl}hinted-Fixture-ExpandedExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fixture Expanded';
+    src: url('#{$fixtureFontBaseUrl}hinted-Fixture-ExpandedRegular.woff2') format('woff2'),
+        url('#{$fixtureFontBaseUrl}hinted-Fixture-ExpandedRegular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fixture Expanded';
+    src: url('#{$fixtureFontBaseUrl}hinted-Fixture-ExpandedBold.woff2') format('woff2'),
+        url('#{$fixtureFontBaseUrl}hinted-Fixture-ExpandedBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fixture Expanded';
+    src: url('#{$fixtureFontBaseUrl}hinted-Fixture-ExpandedExtraBold.woff2') format('woff2'),
+        url('#{$fixtureFontBaseUrl}hinted-Fixture-ExpandedExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fixture Expanded';
+    src: url('#{$fixtureFontBaseUrl}hinted-Fixture-ExpandedThin.woff2') format('woff2'),
+        url('#{$fixtureFontBaseUrl}hinted-Fixture-ExpandedThin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fixture Expanded';
+    src: url('#{$fixtureFontBaseUrl}hinted-Fixture-ExpandedSemiBold.woff2') format('woff2'),
+        url('#{$fixtureFontBaseUrl}hinted-Fixture-ExpandedSemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fixture Expanded';
+    src: url('#{$fixtureFontBaseUrl}hinted-Fixture-ExpandedMedium.woff2') format('woff2'),
+        url('#{$fixtureFontBaseUrl}hinted-Fixture-ExpandedMedium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}

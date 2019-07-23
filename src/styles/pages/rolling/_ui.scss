@@ -20,9 +20,10 @@
 
   .ui-footer-text {
     .text-description-left, .text-description-right, .text-description-center {
-      text-transform: uppercase;
+      font-size: 14px;
       letter-spacing: 1px;
-      font-weight: 900;
+      text-transform: uppercase;
+      font-weight: 400;
     }
 
     .text-description-center {
