@@ -3,6 +3,8 @@
 //
 
 import $ from 'jquery';
+import MobileDetect from 'mobile-detect';
+
 import calculateSlideBreakpoints from './rolling/helpers/calculateSlideBreakpoints';
 import correctHeight from './rolling/base/correctHeight';
 
@@ -16,8 +18,6 @@ import animationBg from './rolling/animations/out/dynamic_bg_01';
 
 export default {
 
-  // STATE ----------------------------------------------
-
   version: '0.01',
   progress: [],
   slides: [],
@@ -27,15 +27,37 @@ export default {
   ratioV: false,
 
 
+  /**
+  * Текущий прогресс в текущем слайде
+  */
   _currentProgress: -1,
   set currentProgress(value) {
     this._currentProgress = value;
     this.updateConsole();
+
+    if (value < 30 || value > 70) {
+      let currentEl = $(`.slide-0${this.currentSlide+1}`);
+      currentEl.css({
+        'opacity': '0.5',
+      });
+    } else {
+      let currentEl = $(`.slide-0${this.currentSlide+1}`);
+      currentEl.css({
+        'opacity': '1',
+      });
+    }
+
+    // let currentEl = $(`.slide-0${this.currentSlide+1}`);
+    // currentEl.css({'transform': `translateY(${100 - 5 * (value - 50)}px)`});
+
   },
   get currentProgress() {
     return this._currentProgress;
   },
 
+  /**
+  * Собственно текущий слайд. Нумерация начинается с 0
+  */
   _currentSlide: -1,
   set currentSlide(value) {
     this._currentSlide = value;
@@ -45,6 +67,9 @@ export default {
     return this._currentSlide;
   },
 
+  /**
+  * Запоминаем параметры окна. Высоту и ширину.
+  */
   _windowHeight: 0,
   get windowHeight() {
     return this._windowHeight;
@@ -55,7 +80,6 @@ export default {
     this.slidesBreakpoins = calculateSlideBreakpoints(this.slidesElements);
     this.checkBreakpoint();
   },
-
   _windowWidth: 0,
   get windowWidth() {
     return this._windowWidth;
@@ -67,6 +91,9 @@ export default {
     this.checkBreakpoint();
   },
 
+  /**
+  * На сколько проскроллили окно
+  */
   _windowOffsetY: 0,
   set windowOffsetY(value) {
     this._windowOffsetY = value;
@@ -77,6 +104,9 @@ export default {
     return this._windowOffsetY;
   },
 
+  /**
+  * Массив значений, пересекая которые скролл запускает анимацию следующего слайда
+  */
   _slidesBreakpoins: [],
   set slidesBreakpoins(value) {
     this._slidesBreakpoins = value;
@@ -85,21 +115,44 @@ export default {
     return this._slidesBreakpoins;
   },
 
-  // STATE END ----------------------------------------------
-
-  // FUNCTIONS
-  // INITIAL
-
+  /**
+  * Ф-ция инициализации всей страницы.
+  */
   init() {
+
     const self = this;
 
+    /**
+    * Кешируем DOM
+    */
     this.$window                  = $(window);
-    this.controlOffset            = this.$window.height() / 2;
     this.$fixedSlidesContainer    = $('#fixed-slides-container');
     this.$slidesProgress          = $('#slides-progress');
+    this.$body                    = $('body');
 
+    let md = new MobileDetect(window.navigator.userAgent);
+    this.isMobile = md.mobile();
+    this.isPhone  =  md.phone();
+    this.isTablet = md.tablet();
+
+    if (this.isMobile || this.isPhone || this.isTablet) {
+      this.$body.addClass('is-mobile-device');
+    }
+
+    /**
+    * Находим точку, переходя которую слайд запускает анимацию
+    * Середина окна
+    */
+    this.setControlOffset();
+
+    /**
+    * Инициализируем слайды
+    */
     this.setupSlides();
 
+    /**
+    * Инициализируем анимацию фона
+    */
     let bg = new Slide({
       el: document.getElementById('website-background'),
       animationData: animationBg,
@@ -108,7 +161,7 @@ export default {
     bg.animation.setSpeed(0.1);
     bg.play();
 
-    // SLIDES CONTROL
+
     this.slidesElements   = $('.slide');
     this.slidesBreakpoins = calculateSlideBreakpoints(this.slidesElements);
 
@@ -119,14 +172,10 @@ export default {
     this.menu    = new Menu();
 
     this.handlerWindowResize();
-
-    // Initial call
     this.setupWindowRatio();
-
     setTimeout(() => {
       self.checkBreakpoint();
     }, 200);
-
     this.setupEvents();
     this.updateConsole();
   },
@@ -160,6 +209,10 @@ export default {
       this.slides.push(slide);
 
     });
+  },
+
+  setControlOffset() {
+    this.controlOffset = this.$window.height() / 2;
   },
 
   // MAGIC
@@ -204,6 +257,9 @@ export default {
 
       } else {
 
+        /**
+        * Уходим со слайда
+        */
         this.slides[i].animation.setSpeed(8);
         this.slides[i].reverse();
         this.progress[i] = 0;
@@ -233,6 +289,7 @@ export default {
   handlerWindowResize(event) {
 
     let previousRatio = this.ratioV;
+    this.setControlOffset();
 
     correctHeight();
     // All other params calculated in the setter
@@ -250,7 +307,7 @@ export default {
       this.setupSlides();
       this.checkBreakpoint();
 
-      // Если текущий слай не изменился, система не будет его автоматически проигрывать
+      // Если текущий слайд не изменился, система не будет его автоматически проигрывать
       // Поэтому форсим проигрывание текущего слайда
       if (previousCurrentSlide === this.currentSlide) {
         this.slides[this.currentSlide].animation.setSpeed(1);

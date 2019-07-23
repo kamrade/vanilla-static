@@ -1,6 +1,7 @@
 .rolling-content {
   .console-output {
     position: fixed;
+    z-index: $z-console;
     right: $spacer;
     top: 4*$spacer;
     width: 300px;
@@ -12,6 +13,5 @@
     line-height: 1.2;
     color: white;
     padding: $spacer;
-    display: none;
   }
 }

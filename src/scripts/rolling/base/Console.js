@@ -30,6 +30,12 @@ export default class Console {
       Window width: ${output.windowWidth}
       <br/>
       Window height: ${output.windowHeight}
+      <br/>
+      isMobile: ${output.isMobile}
+      <br/>
+      isPhone: ${output.isPhone}
+      <br/>
+      isTablet: ${output.isTablet}
     `);
 
   }

@@ -1,5 +1,20 @@
+.is-mobile-device {
+  .rolling-content {
+    .slide {
+      opacity: 0;
+    }
+    .fixed-slides-container {
+      display: none;
+    }
+  }
+}
+
 .rolling-content {
 
+  /**
+  * Контрольный слайд
+  * Эти слайды контролят всю анимацию
+  */
   .slide {
     height: 100vh;
     padding: $spacer;
@@ -8,16 +23,24 @@
     z-index: $z-slides;
     padding: 2rem;
     display: flex;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+
+    .mobile-slide-wrapper {
+      margin: auto;
+    }
 
     @include correct-100vh();
 
-    @include media-breakpoint-up(lg) {
-      opacity: 0;
-      padding-top: 30vh;
-    }
+    // @include media-breakpoint-up(lg) {
+    //   padding-top: 30vh;
+    // }
 
   }
 
+  /**
+  * Фиксированный слайд в котором проходит вся анимация
+  */
   .fixed-slides-container {
     position: fixed;
     top: 0;
@@ -26,12 +49,8 @@
     bottom: 0;
     width: 100%;
     height: 100%;
-    display: none;
+    display: block;
     @include correct-100vh();
-
-    @include media-breakpoint-up(lg) {
-      display: block;
-    }
 
     .slide-fixed {
       position: absolute;
@@ -42,7 +61,7 @@
       width: 100%;
       height: 100%;
       @include correct-100vh();
-      // transition: transform .25s ease-in-out;
+      transition: transform .25s ease-in-out;
     }
   }
 
