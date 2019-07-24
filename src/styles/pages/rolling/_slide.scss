@@ -1,11 +1,15 @@
 .is-mobile-device {
   .rolling-content {
+
     .slide {
-      opacity: 0;
+      opacity: 0.85;
+      height: 75vh;
     }
+
     .fixed-slides-container {
       display: none;
     }
+
   }
 }
 
@@ -24,10 +28,11 @@
     padding: 2rem;
     display: flex;
     opacity: 0;
-    transition: opacity .3s ease-in-out;
+    transition: opacity .5s ease-in-out;
 
     .mobile-slide-wrapper {
       margin: auto;
+
     }
 
     @include correct-100vh();

@@ -1,8 +1,8 @@
-/*
-// SLIDE
-//
-// Класс, который отвечает за создание слайда через constructor
-// и за его базовые функции (play, reverse)
+/**
+* SLIDE
+*
+* Класс, который отвечает за создание слайда через constructor
+* и за его базовые функции (play, reverse)
 */
 
 import lottie from 'lottie-web';
@@ -24,7 +24,6 @@ export default class Slide {
       renderer: 'svg',
       loop: options.loop,
       autoplay: false,
-      // path: this.animationPath,
       animationData: this.animationData
     });
 

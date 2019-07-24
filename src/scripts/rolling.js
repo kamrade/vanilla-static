@@ -21,10 +21,12 @@ export default {
   version: '0.01',
   progress: [],
   slides: [],
+  mobileSlides: [],
   controlOffset: 0,
   slidesElements: null,
   ratio: 2,
   ratioV: false,
+  isMobile: null,
 
 
   /**
@@ -35,20 +37,10 @@ export default {
     this._currentProgress = value;
     this.updateConsole();
 
-    if (value < 30 || value > 70) {
-      let currentEl = $(`.slide-0${this.currentSlide+1}`);
-      currentEl.css({
-        'opacity': '0.5',
-      });
-    } else {
-      let currentEl = $(`.slide-0${this.currentSlide+1}`);
-      currentEl.css({
-        'opacity': '1',
-      });
-    }
+    // let currentTableSlide = $(`.slide-0${this.currentSlide+1}`);
+    // currentTableSlide.css({'transform': `translateY(${100 - 5 * (value - 50)}px)`});
 
-    // let currentEl = $(`.slide-0${this.currentSlide+1}`);
-    // currentEl.css({'transform': `translateY(${100 - 5 * (value - 50)}px)`});
+
 
   },
   get currentProgress() {
@@ -131,11 +123,10 @@ export default {
     this.$body                    = $('body');
 
     let md = new MobileDetect(window.navigator.userAgent);
-    this.isMobile = md.mobile();
-    this.isPhone  =  md.phone();
-    this.isTablet = md.tablet();
 
-    if (this.isMobile || this.isPhone || this.isTablet) {
+    this.isMobile = md.mobile() || md.phone() || md.tablet();
+
+    if (this.isMobile) {
       this.$body.addClass('is-mobile-device');
     }
 
@@ -188,39 +179,50 @@ export default {
 
   setupSlides() {
 
+    // does not support in IE
     this.$fixedSlidesContainer.empty();
-    this.slides = [];
+    this.slides       = [];
+    this.mobileSlides = [];
 
     data.slides && data.slides.map((slideData, i) => {
 
-      // this.$slidesProgress.append(`<div class="slide slide-${i}"></div>`);
-      this.$fixedSlidesContainer.append(`<div class="slide-fixed" id="${slideData.element}"></div>`);
+      if (this.isMobile) {
 
+        // Добавляем мобильные слайды
+        let currentMobileSlideContainer = document.getElementById(`progress-slide-0${i+1}`);
+        // find better solution
+        currentMobileSlideContainer.innerHTML = '';
 
-      let slide = new Slide({
-        el: document.getElementById(slideData.element),
-        animationPath: slideData.animationPath,
-        animationData: this.ratioV ? slideData.animationDataV : slideData.animationData,
-        index: slideData.id
-      });
+        let mobileSlide = new Slide({
+          el: currentMobileSlideContainer,
+          animationData: slideData.animationDataT,
+          index: slideData.id
+        });
+        mobileSlide.animation.setSpeed(2);
+        this.mobileSlides.push(mobileSlide);
 
-      slide.animation.setSpeed(2);
+      } else {
 
-      this.slides.push(slide);
+        // Добавляем фиксированные слайды
+        this.$fixedSlidesContainer.append(`<div class="slide-fixed" id="${slideData.element}"></div>`);
+        let slide = new Slide({
+          el: document.getElementById(slideData.element),
+          animationPath: slideData.animationPath,
+          animationData: this.ratioV ? slideData.animationDataV : slideData.animationData,
+          index: slideData.id
+        });
+        slide.animation.setSpeed(2);
+        this.slides.push(slide);
+
+      }
 
     });
   },
 
-  setControlOffset() {
-    this.controlOffset = this.$window.height() / 2;
-  },
-
   // MAGIC
-
   checkBreakpoint() {
 
     let isAtLeastOneBreakpoint = false;
-
     let slideBeforeCheck = this.currentSlide;
 
     this.slidesBreakpoins.map((el, i) => {
@@ -233,41 +235,54 @@ export default {
         this.currentSlide = i;
 
         if (this.currentSlide < slideBeforeCheck && this.slides[slideBeforeCheck]) {
-          $(this.slides[slideBeforeCheck].el)
-            .css('transform', `translateY(100%)`);
+          if (this.slides.length) {
+            $(this.slides[slideBeforeCheck].el).css('transform', `translateY(100%)`);
+          }
         }
         if (this.currentSlide > slideBeforeCheck && this.slides[slideBeforeCheck]) {
-          $(this.slides[slideBeforeCheck].el)
-            .css('transform', `translateY(-100%)`);
+          if (this.slides.length) {
+            $(this.slides[slideBeforeCheck].el).css('transform', `translateY(-100%)`);
+          }
         }
         if (this.currentSlide !== slideBeforeCheck) {
-          this.slides[i].animation.setSpeed(1);
-          this.slides[i].play();
+          if (this.slides.length) {
+            this.slides[i].animation.setSpeed(1);
+            this.slides[i].play();
+          } else {
+            this.mobileSlides[i].animation.setSpeed(1);
+            this.mobileSlides[i].play();
+          }
         }
 
         let offset = this.windowOffsetY + this.controlOffset - el.y;
         this.progress[i] = Math.round(offset / el.h * 100);
         this.currentProgress = Math.round(offset / el.h * 100);
 
-        // MOVE SLIDE WHEN SCROLL BETWEEN BREAKPOINTS
-        // $(this.slides[i].el).css('transform', `translateY(${-1*this.currentProgress/10}%)`);
-
-        // Дергается на ipad
-        $(this.slides[i].el).css('transform', `translateY(${-1*this.currentProgress/10}%)`);
+        if (this.slides.length) {
+          $(this.slides[i].el).css('transform', `translateY(${-1*this.currentProgress/10}%)`);
+        }
 
       } else {
 
         /**
         * Уходим со слайда
         */
-        this.slides[i].animation.setSpeed(8);
-        this.slides[i].reverse();
+        if (this.slides.length) {
+          this.slides[i].animation.setSpeed(8);
+          this.slides[i].reverse();
+        } else {
+          this.mobileSlides[i].animation.setSpeed(8);
+          this.mobileSlides[i].reverse();
+        }
         this.progress[i] = 0;
 
       }
 
     });
 
+    /**
+    * Такого быть не должно, но если все таки ни один слайд не подходит под текущие breakpoints
+    */
     if (!isAtLeastOneBreakpoint) {
       this.currentSlide = -1;
       this.currentProgress = -1;
@@ -276,12 +291,24 @@ export default {
     }
   },
 
+
+  /**
+  * Setup
+  */
+  setControlOffset() {
+    this.controlOffset = this.$window.height() / 2;
+  },
+
   setupWindowRatio() {
     this.ratio  = this.windowWidth / this.windowHeight;
     this.ratioV = (this.windowWidth / this.windowHeight) < 1;
   },
 
-  // EVENT HANDLERS
+
+
+  /**
+  * EVENT HANDLERS
+  */
   handlerWindowScroll() {
     this.windowOffsetY = this.$window.scrollTop();
   },
@@ -310,14 +337,21 @@ export default {
       // Если текущий слайд не изменился, система не будет его автоматически проигрывать
       // Поэтому форсим проигрывание текущего слайда
       if (previousCurrentSlide === this.currentSlide) {
-        this.slides[this.currentSlide].animation.setSpeed(1);
-        this.slides[this.currentSlide].play();
+        if (this.slides.length) {
+          this.slides[this.currentSlide].animation.setSpeed(1);
+          this.slides[this.currentSlide].play();
+        } else {
+          this.mobileSlides[this.currentSlide].animation.setSpeed(1);
+          this.mobileSlides[this.currentSlide].play();
+        }
+
       }
 
     }
 
   },
 
+  // Пока никак особо не задействовано
   handlerKeyup(event) {
 
     if (event.keyCode === 38) {
@@ -332,7 +366,11 @@ export default {
 
   },
 
-  // HELPERS
+
+
+  /**
+  * HELPERS
+  */
   updateConsole() {
     if (this.console) {
       this.console.update(this);

@@ -4,8 +4,7 @@
     z-index: $z-console;
     right: $spacer;
     top: 4*$spacer;
-    width: 300px;
-    height: 200px;
+    width: 240px;
     overflow-Y: auto;
     overflow-X: hidden;
     background-color: rgba(0,0,0,0.75);
@@ -13,5 +12,6 @@
     line-height: 1.2;
     color: white;
     padding: $spacer;
+    border-radius: 8px;
   }
 }
