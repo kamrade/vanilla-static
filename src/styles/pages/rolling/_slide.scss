@@ -3,7 +3,7 @@
 
     .slide {
       opacity: 0.85;
-      height: 75vh;
+      @include correct-100vh();
     }
 
     .fixed-slides-container {

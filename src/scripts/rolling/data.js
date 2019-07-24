@@ -6,10 +6,10 @@ import slide01  from './animations/out/slide_01';
 import slide01T from './animations/out/slide_01T';
 
 import slide02  from './animations/out/slide_02';
-import slide02T from './animations/out/slide_01T';
+import slide02T from './animations/out/slide_02T';
 
 import slide03  from './animations/out/slide_03';
-import slide03T from './animations/out/slide_01T';
+import slide03T from './animations/out/slide_03T';
 
 import slide04  from './animations/out/slide_09';
 import slide04T from './animations/out/slide_01T';
