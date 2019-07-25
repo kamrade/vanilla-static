@@ -157,7 +157,7 @@ export default {
     this.slidesBreakpoins = calculateSlideBreakpoints(this.slidesElements);
 
     this.console = new Console();
-    // this.console.hide();
+    this.console.hide();
     this.ticks   = new Ticks();
     this.ticks.hide();
     this.menu    = new Menu();
